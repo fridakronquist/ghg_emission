@@ -58,8 +58,24 @@ ggplot(ghg_tot, aes(x=year, y=sqrt(total_ghg))) +
   geom_point()
 ggsave("figures/part1/model_sqrt_scatter.png", width = 6, height = 4)
 
+# Best fit: model_log
+# Scatter plot w regression line
+ggplot(ghg_tot, aes(x=year, y=log10(total_ghg))) +
+  geom_smooth(method=lm, se=FALSE, color="#D5542C") +
+  geom_point(color="#D5542C") +
+  labs(title = "Total yearly GHG Emission 1990-2019",
+       subtitle = "",
+       y = "log10(GHG emission (kt))", 
+       x = "Year") +
+  theme_bw() + 
+  theme(plot.title = element_text(face="bold", size=18),
+        plot.subtitle = element_text(size=15),
+        axis.title.x = element_text(size=16),
+        axis.title.y = element_text(size=16),
+        axis.text.x = element_text(size=12),
+        axis.text.y = element_text(size=12)) +
+  scale_y_log10() 
 
-
-
+ggsave("figures/part1/regression_plot.png", width = 6, height = 4)
 
 
