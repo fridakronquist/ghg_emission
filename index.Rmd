@@ -1,0 +1,12 @@
+---
+title: "Green house gas emission analysis"
+author: Frida Kronquist
+output: html_document
+email_address: fridakronquist@gmail.com
+github_repo: https://fridakronquist.github.io/ghg_emission/
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
