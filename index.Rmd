@@ -6,5 +6,5 @@ email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 ---
 
-
+![](figures/part1/regression_plot.png)
 
