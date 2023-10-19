@@ -2,6 +2,7 @@ library(tidyverse)
 library(corrplot)
 
 source("code/data_preparation.R")
+source("code/part3_ghg_income_aov.R")
 
 # Import dataframe with population data
 pop_df <- read_csv2("data/processed/pop.csv")
@@ -47,15 +48,19 @@ ghg_n <-
   dplyr::summarise(n = n())
 
 # Specify the factor levels to reorder income groups
-ghg_n$income_group <- factor(ghg_n$income_group, levels = c("High income", "U
-pper middle income", "Lower middle income", "Low income"))
+ghg_n$income_group <- factor(ghg_n$income_group, levels = c("High income", 
+                                                            "Upper middle income", 
+                                                            "Lower middle income", 
+                                                            "Low income"))
 
 # Transform dataframe into a contingency table
 ghg_ct <- xtabs(n ~ income_group + budget_comparison, data=ghg_n)
 
 # Specify the factor levels to reorder bars
-ghg_n$income_group <- factor(ghg_n$income_group, levels = c("Low income", "Lo
-wer middle income", "Upper middle income", "High income"))
+ghg_n$income_group <- factor(ghg_n$income_group, levels = c("Low income", 
+                                                            "Lower middle income", 
+                                                            "Upper middle income", 
+                                                            "High income"))
 
 ghg_n$budget_comparison = factor(ghg_n$budget_comparison, 
                                  levels = c("Under","Over"), ordered = TRUE)
@@ -69,8 +74,8 @@ ggplot(data = ghg_n, aes(x=income_group, y=n,
        subtitle = "Based on income group",
        y = "Frequency", x = "Income Group") + 
   theme_bw() + 
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
+  theme(plot.title = element_text(face="bold", size=14),
+        plot.subtitle = element_text(size=14),
         axis.title.x = element_text(size=16),
         axis.title.y = element_text(size=0),
         axis.text.x = element_text(size=12),
@@ -83,6 +88,8 @@ ggplot(data = ghg_n, aes(x=income_group, y=n,
                     values = c("#9C2B35", "#2C9C46"),
                     labels = c("Over carbon budget", "Under carbon budget")) +
   coord_flip()
+
+ggsave("figures/part4/fullfillment_bar_plot.png", width = 6, height = 4)
 
 # Check so all expected counts > 5. Else Fisher.
 chisq.test(ghg_ct, correct = FALSE)$expected
@@ -97,10 +104,11 @@ round(chisq_test1$residuals^2, 2)
 contrib1 <- 100*chisq_test1$residuals^2/chisq_test1$statistic
 
 # Make correlation plot
+png("figures/part4/corr_plot.png",
+    width = 800, height = 800)
 corrplot(contrib1, is.cor = FALSE, cl.align.text = "l", tl.col = "black", 
          col= COL1('Purples'), col.lim=c(0, 40), addCoef.col = 'grey50')
-
-
+dev.off()
 
 # Counts
 ghg_ct
