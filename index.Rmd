@@ -6,5 +6,23 @@ email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 ---
 
+# Introduction
+Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
+
+The main cause of climate change is a phenomenon known as the greenhouse effect. Human activity is resulting in the increased emission of so-called greenhouse gases (GHGs), such as water vapor, carbon dioxide, methane, nitrous oxide, and fluorinated gases. These gases get trapped in the atmosphere and let the light from the sun in but keep some of the heat from escaping, like the glass walls of a greenhouse. The more GHGs in the atmosphere, the more heat gets trapped, strengthening the greenhouse effect, and increasing the earth’s temperature (UN,	2022).
+
+However, not all human activities emit the same amount of GHGs into the atmosphere. Depending on income and lifestyle choices individuals have access to different types and amounts of resources. Although the inequality in average income between countries has decreased during the past 25 years, the income gap between countries is still ample. According to the UN (2023a), the average income of people living in North America is 16 times higher than that of people in sub-Saharan Africa. The objective of this report is to explore the relationship between a country’s average income group and its emission of GHGs.
+
+The report aims to investigate the following research questions:
+
+- *Q1.* Has the total greenhouse gas emissions globally per year increased from 1990 to 2019?
+- *Q2.* Was there a difference in greenhouse gas emissions between low-income and high-income countries in 2019?
+- *Q3.* Was there a difference in greenhouse gas emissions between the income groups low, lower middle, upper middle, and high income in 2019?
+- *Q4.* Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?
+
+To make it easier for the reader to follow, the research questions have been divided into four parts, *Part 1: Global greenhouse gas emission trend 1990-2019*, *Part 2: Difference in greenhouse gas emission low vs high-income countries*, *Part 3: Difference in greenhouse gas emission between four income groups*, and *Part 4: Associations between income group and carbon budget fulfillment*. Part 1 aims at answering the first research question (*Q1*), Part 2 at answering the second research question (*Q2*), Part 3 at answering the third research question (*Q3*), and Part 4 to answering the fourth research question (*Q4*).
+
+
+
 ![](figures/part1/regression_plot.png)
 
