@@ -6,7 +6,7 @@ email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 ---
 
-# Introduction
+## Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
 
 The main cause of climate change is a phenomenon known as the greenhouse effect. Human activity is resulting in the increased emission of so-called greenhouse gases (GHGs), such as water vapor, carbon dioxide, methane, nitrous oxide, and fluorinated gases. These gases get trapped in the atmosphere and let the light from the sun in but keep some of the heat from escaping, like the glass walls of a greenhouse. The more GHGs in the atmosphere, the more heat gets trapped, strengthening the greenhouse effect, and increasing the earth’s temperature (UN,	2022).
@@ -21,6 +21,88 @@ The report aims to investigate the following research questions:
 - *Q4.* Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?
 
 To make it easier for the reader to follow, the research questions have been divided into four parts, *Part 1: Global greenhouse gas emission trend 1990-2019*, *Part 2: Difference in greenhouse gas emission low vs high-income countries*, *Part 3: Difference in greenhouse gas emission between four income groups*, and *Part 4: Associations between income group and carbon budget fulfillment*. Part 1 aims at answering the first research question (*Q1*), Part 2 at answering the second research question (*Q2*), Part 3 at answering the third research question (*Q3*), and Part 4 to answering the fourth research question (*Q4*).
+
+
+## Method
+This section will provide a brief explanation of methods and a description of the workflow. All statistical analyses have been performed in R. The following packages were used (what they were used for in parenthesis):
+
+- tidyverse	(data	sorting,	plots,	etc.)
+- Rcmdr	(numSummary)
+- corrplot	(correlation	plot)
+
+### Data collection
+Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
+
+The main dataset that was downloaded was the “Total greenhouse gas emissions (kt of CO2 equivalent)”, which was last updated on 2022-09-16 (World Bank, 2023a). This data have been used to answer all four research questions. The data was downloaded as an excel file containing three sheets. The main sheet contains the	 columns “Country Name”, “Country Code”, “Indicator Name”, “Indicator Code”, and the greenhouse gas emissions for each country and economy from 1960 to 2019 sorted into columns based on year, i.e. a wide format. The two other sheets contain metadata regarding countries, e.g. region and income group, and indicators.
+
+The other dataset that was downloaded was the “Population, total”, which was last updated on 2022-12-22 (World bank, 2023b). This data was used in combination with the above mentioned dataset to answer research question 4. This data was also downloaded as an excel file and also contained three sheets. The main data sheet contains the columns “Country Name”, “Country Code”, “Indicator Name”, “Indicator Code”, as well as population data for all countries and economies between the years 1960 to 2021. The two other sheets contain metadata regarding countries and indicators.
+
+### Data preparation and cleaning
+The data was prepared in two different stages, first in Excel and then in R. For both imported workbooks, the main data sheet was transformed and then saved as a CSV file. These CSV files were then imported into R where the transformation and cleaning of the data continued.
+
+First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table 1 shows changes made to the sheet containing the main data.
+
+# TABLE
+
+Note that Venezuela (VEN) did not have a value for income group in the metadata sheet, “Venezuela, previously classified as an upper-middle income country, is now unclassified due to a lack of available data in the recent period” (World Bank, 2022).
+
+Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table 2 shows changes made to the sheet containing the main data.
+
+# TABLE
+
+The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and the remaining years until 2050, see Equation 1.
+
+# EQUATION
+
+The year 2050 was chosen as it is the year UNDP mentions in their emission goal to reach global net zero emission of CO2. Which is related to the thirteenth sustainable development goal: Climate action (UNDP, 2023). UN projects the population in 2050 will be 9.8 billion people (UN, 2023b).
+
+Lastly, additional filtering was done to custom the data to be able to answer each specific research question. This was done in R and will not be covered in this chapter. For the continued cleaning process it is recommended to read the appendix for the respective report part.
+
+### Statistical methods and tests
+This sub-section will explain the workflow related to the statistical tests used in this report.
+
+#### Linear regression
+The first research question the report aims to answer was Q1. Has the total greenhouse gas emissions globally increased from 1990 to 2019? As time cannot be affected by greenhouse gas emissions but greenhouse gas emissions can be affected by time, a linear regression model was used to find the answer to this question. Time was chosen as the explanatory variable and total greenhouse gas emission as the response variable, i.e. greenhouse gas emission (ghg_emission) was set as a function of time (year), $ghg\_emission = b_{0} + b_{1} \cdot year$.
+
+To see if the model was well adapted to the dataset, a scatterplot as well as diagnostic tools were made to examine if the relationship looked linear. When analyzing the basic diagnostic plots the following were considered:
+
+- Residuals vs Fitted: A good fit has equally spread residuals around a horizontal line without distinct patterns. Indicates equal variance.
+- Normal Q-Q: In a good fit the residuals follow the straight dashed line. Indicates a normal	distribution.
+- Scale-Location: This figure shows the same as Residuals vs Fitted, but on a different scale.
+- Residuals vs Leverage: Good fit when all data points are inside Cook’s distance. Indicates that no influential outliers exist.
+
+If the model did not seem to be a good fit, the response variable was transformed using first a logarithmic transformation and thereafter a square root transformation. To be able to decide what model was the best fit for the data the results from the diagnostic tools as well as the R2 values from the models were compared.
+
+#### T-test
+The	 first step in answering the second research question *Q2. Was there a difference in greenhouse gas emissions between low-income and high-income countries in 2019?* was to check if the data were normally distributed. This was done by plotting histograms for both groups (high-income and low-income countries). If the data was normally distributed, a t-test would be performed. If it was not, Wilcoxon’s rank-sum test would be used. The latter analyzes the median differences, therefore it can be used on non-normally distributed (skewed)	data.
+
+#### One-way ANOVA
+To answer the third research question, *Q3*, if there was a difference in greenhouse gas emissions between the four income groups low, lower middle, upper middle, and high income in 2019 it was first investigated whether a One-Way Analysis of Variance (one-way ANOVA) could be used.
+
+To be able to perform an ANOVA test two assumptions regarding the data had to be met.
+
+1. The variance across groups was homogeneous
+2. The data was normally distributed
+
+To check if the data matched the assumptions, basic diagnostic plots of residuals vs fitted and normal Q-Q were plotted.
+
+The Residuals vs Fitted plot showed the spread of the residuals around a horizontal line for each group. To comply with the assumption of homogeneous variance across groups the spread of residuals for the group with the largest variance had to be less than three times the spread of the group with the smallest. If not, the data in the ANOVA model was considered heteroscedastic which meant the variance of the residuals was unequal over the range of measured values, i.e. the first assumption was not met.
+
+For the data in the ANOVA model to comply with the second assumption of normal distribution, the Normal Q-Q plot would show the residuals following the straight dashed line	in the graph. If the residuals deviated too much from the straight line the distribution of the data was considered non-normal.
+
+If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).
+
+# EQUATIONS
+
+If the data did not meet the ANOVA assumptions using either of mentioned transformations, the Kruskal-Wallis rank sum test for non-parametric data was used instead. If the test showed that there was a difference between at least two of the groups, a post-hoc test (using the	PMCMRplus	package) would be performed to be able to decide between which groups the difference lay.
+
+#### Chi-square test
+# CHI SIGN
+A	 chi-square (χ2) test can be applied to statistical information of the type frequencies (integers) that are classified into different categories, usually a contingency table. The analysis investigates if the observed counts differ significantly from the expected counts. A chi-square test can be applied to different types of research questions. In this study, a	chi square test for association was used to answer research question 4, *Q4. Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?*
+
+The chi-square test is a nonparametric test. However, all the expected frequencies should be equal to or larger than 5. If that is not the case it is recommended to perform a Fisher’s exact test instead. Hence, the values of the expected counts were inspected before moving forward with the analysis.
+
+To investigate what attribute contributed most to the results of the chi-square test the individual chi-square components i.e. the residuals of the test were analyzed. Analyzing the residuals of the chi-square test gives an indication of which attributes contributed most to the chi-square result but not in what direction. Therefore, the direction of the deviation was found by analyzing the deviation of the observed frequency compared to the expected frequency for each attribute.
 
 
 
