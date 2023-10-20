@@ -1,10 +1,19 @@
 ---
 title: "Green house gas emission analysis"
 author: Frida Kronquist
-output: html_document
 email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
 ---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(gt)
+```
+
 
 ## Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
@@ -29,6 +38,8 @@ This section will provide a brief explanation of methods and a description of th
 - tidyverse	(data	sorting,	plots,	etc.)
 - Rcmdr	(numSummary)
 - corrplot	(correlation	plot)
+
+# - gt (tables)
 
 ### Data collection
 Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
