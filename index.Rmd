@@ -35,6 +35,7 @@ This section will provide a brief explanation of methods and a description of th
 - Rcmdr	(numSummary)
 - corrplot	(correlation	plot)
 - kableExtra (tables)
+- cowplot (plot grid)
 
 ### Data collection
 Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
@@ -132,6 +133,37 @@ The chi-square test is a nonparametric test. However, all the expected frequenci
 To investigate what attribute contributed most to the results of the chi-square test the individual chi-square components i.e. the residuals of the test were analyzed. Analyzing the residuals of the chi-square test gives an indication of which attributes contributed most to the chi-square result but not in what direction. Therefore, the direction of the deviation was found by analyzing the deviation of the observed frequency compared to the expected frequency for each attribute.
 
 
+## Result
+This section will present the results of the analysis.
+
+# Equation
+
+### Part 1: Global green house gas emission trend 1990-2019
+Simple linear regression was used to test if the total GHG emissions increased from 1990 to 2019, i.e. to test if the year significantly predicted the total greenhouse gas emissions. The fitted regression model was: $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. A visualization of the regression model can be seen in Figure 1.
 
 ![](figures/part1/regression_plot.png)
+Figure 1. Scatterplot showing the linear regression model : $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$.
 
+The overall regression was statistically significant (R2 = .97, F(28, 1) = 1122, p < .001). It was found that the year significantly predicted the total emission of GHGs ($\beta$ = 0.0079, p = < .001). I.e. total greenhouse gas emissions significantly increased from 1990 to 2019.
+
+
+### Part 2: Difference in green house gas emission low vs high income countries
+As seen in Figure 2, the data was found to be skewed to the right. Hence, a Wilcoxon rank-sum test was used to analyze if there was a difference in greenhouse gas emissions between high-income and low-income countries in 2019.
+
+![](figures/part2/distribution.png)
+
+Figure 2. Histograms showing the right-skewed distribution of GHG emission for high-income and low-income countries.
+
+The median greenhouse gas emission in the high-income group was 60 590kt, whereas the median greenhouse gas emission in the low-income group was 29 110kt. There was a statistically significant difference between the groups in terms of median greenhouse gas emission in 2019 (W=1040, p = .024, $\eta_{high}$=57, $\eta_{low}$=28, Wilcoxon’s rank-sum test). Based on the medians, high-income countries released more than twice, 31 480kt, more greenhouse gases than low-income countries.
+
+The average greenhouse gas emission from high-income countries was 261 137kt (SD 812
+009), and the average emission from low-income countries was 36 169kt (SD 34 519). The large difference between the mean and the median, especially for high-income countries, confirms the observation made from the histogram (Figure 2) that the data was skewed. In this case, it means that there are a few countries in the high-income group that releases much more greenhouse gases than the other countries in the same group.
+
+The box plots below (Figure 3) illustrate the difference in median greenhouse gas emissions between high- and low-income countries in 2019. Also here it is possible to see that there are a few countries that release way more than the rest of the high-income countries by observing the outliers. The USA released the most greenhouse gases out of the high-income countries in 2019, 6 001 210kt. That is more than five times the amount released by Japan, which had the second largest greenhouse gas emission of 1 166 510kt.
+
+![](figures/part2/box_plots.png)
+
+Figure 3. Boxplots showing the differences in GHG emission between high-income and low-income countries, both with and without extreme cases (outliers).
+
+Another observation worth mentioning is that the high-income sample contained 57
+countries, and the low-income sample contained 28 countries. That the low-income sample was around half the sample size of high-income countries may have affected the results of this analysis.
