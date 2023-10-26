@@ -1,5 +1,6 @@
 library(tidyverse)
 library(Rcmdr) # numSummary
+library(cowplot)
 
 source("code/data_preparation.R")
 ghg_income_t <-
@@ -82,3 +83,5 @@ plot_box_nooutliers <- ggplot(ghg_income_t, aes(x=reorder(income_group, ghg_emis
 
 # both box plots in same figure
 plot_grid(plot_box_outliers, plot_box_nooutliers, ncol = 1, nrow = 2)
+
+ggsave("figures/part2/box_plots.png", width = 6, height = 4)
