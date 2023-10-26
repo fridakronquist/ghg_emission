@@ -66,8 +66,6 @@ pop_changes_tbl
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and 
 the remaining years until 2050, see Equation 1.
 
-# EQUATION NOT WORKING WHEN PUSHED TO GITHUB 
-
 $$\begin{equation}
 \tag{Eq. 1}
 carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left}
@@ -111,8 +109,6 @@ For the data in the ANOVA model to comply with the second assumption of normal d
 
 If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).
 
-# EQUATIONS NOT WORKING WHEN PUSHED TO GITHUB 
-
 $$\begin{equation}
 \tag{Eq. 2}
 data\_log\_transformed = \log_{10}\left(ghg\_emisson\right)
@@ -135,8 +131,6 @@ To investigate what attribute contributed most to the results of the chi-square 
 
 ## Result
 This section will present the results of the analysis.
-
-# Equation
 
 ### Part 1: Global green house gas emission trend 1990-2019
 Simple linear regression was used to test if the total GHG emissions increased from 1990 to 2019, i.e. to test if the year significantly predicted the total greenhouse gas emissions. The fitted regression model was: $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. A visualization of the regression model can be seen in Figure 1.
@@ -167,3 +161,13 @@ Figure 3. Boxplots showing the differences in GHG emission between high-income a
 
 Another observation worth mentioning is that the high-income sample contained 57
 countries, and the low-income sample contained 28 countries. That the low-income sample was around half the sample size of high-income countries may have affected the results of this analysis.
+
+
+### Part 3: Difference in greenhouse gas emission between four income groups
+Statistically significant differences in greenhouse gas emissions during 2019 were not observed between countries in the four income groups, high income (Mdn=60590), upper middle income (Mdn=21915), lower middle income (Mdn=30530), and low income
+(Mdn=29110) as visualized in Figure 4 below.
+
+![](figures/part3/box_plots.png)
+Figure 4. GHG emission per income group for the four income groups high, upper middle, lower middle, and low income. The median GHG emission of high income countries was 60590ktCO2, upper middle income countries was 21915ktCO2, lower middle income countries was 30530ktCO2, and low income countries was 29110ktCO2.
+
+A Kruskal-Wallis rank sum test returned a p-value of 0.18 ($\chi^2$(3)=4.891). Since the p-value was larger than the critical value ($\alpha$=0.05), the null hypothesis of equal population means was not rejected and it was concluded that there is not a (statistically) significant difference among the population means, i.e. there was not a difference in GHG emission between at the income groups.
