@@ -1,5 +1,6 @@
 library(tidyverse)
 library(Rcmdr) # numSummary
+library(cowplot)
 
 source("code/data_preparation.R")
 

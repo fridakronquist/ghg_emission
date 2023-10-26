@@ -188,9 +188,6 @@ source("code/part4_associations.R")
 ghg_ct_tbl
 ```
 
-
-# Table
-
 The contingency table in Table 3 is illustrated in Figure 5.
 
 ![](figures/part4/fullfillment_bar_plot.png)
