@@ -1768,10 +1768,8 @@ for in parenthesis):</p>
 <li>tidyverse (data sorting, plots, etc.)</li>
 <li>Rcmdr (numSummary)</li>
 <li>corrplot (correlation plot)</li>
+<li>kableExtra (tables)</li>
 </ul>
-</div>
-<div id="kableextra-tables" class="section level1">
-<h1>- kableExtra (tables)</h1>
 <div id="data-collection" class="section level3">
 <h3>Data collection</h3>
 <p>Two public datasets have been used in this report, both have been
@@ -1806,10 +1804,6 @@ continued.</p>
 <p>First, the Excel workbook containing data for the total greenhouse
 gas emissions was prepared and cleaned. Table 1 shows changes made to
 the sheet containing the main data.</p>
-</div>
-</div>
-<div id="table" class="section level1">
-<h1>TABLE</h1>
 <table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <thead>
 <tr>
@@ -1912,9 +1906,101 @@ the recent period” (World Bank, 2022).</p>
 <p>Secondly, the Excel workbook containing data for the populations was
 prepared and cleaned. Table 2 shows changes made to the sheet containing
 the main data.</p>
-</div>
-<div id="table-1" class="section level1">
-<h1>TABLE</h1>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Software
+</th>
+<th style="text-align:left;">
+Alternation
+</th>
+<th style="text-align:left;">
+Details
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="8">
+Excel
+</td>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+Removed
+</td>
+<td style="text-align:left;">
+Row 1-3, containing ‘data source’ and ‘last updated’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column D, containing ‘indicator code’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column E-AH + BM-BN, empty columns reserved for the years 1960-1989 and
+2020-2021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rows 49 rows containing economies, regions, etc., instead of a country*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Added
+</td>
+<td style="text-align:left;">
+Column containing ‘Income group’ from the sheet ‘Metadata -Countries’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column containing ‘Region’ from the sheet ‘Metadata - Countries’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Changed
+</td>
+<td style="text-align:left;">
+Sorted data in alphabetical order based on country name
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Renamed variables using the snake case naming convention (stylized as
+snake_case)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;vertical-align: top !important;" rowspan="2">
+R
+</td>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Changed.
+</td>
+<td style="text-align:left;">
+Transformed data from wide to long format
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Changed data type for ‘year’ from chr to dbl
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup>*</sup> Compared to the World Bank’s list of countries (World bank,
+2023c). For full list see appendix A1.
+</td>
+</tr>
+</tfoot>
+</table>
 <p>The carbon budget per capita and year until 2050 was estimated using
 the remaining carbon budget of 500 GtCO2 which is in line with keeping
 global warming to 1.5°C (50% probability) according to IPCC A6 WG1
@@ -1922,6 +2008,7 @@ global warming to 1.5°C (50% probability) according to IPCC A6 WG1
 gas emission from 2019 was added to this budget. The calculated carbon
 budget for 2019 was then divided with the average population and the
 remaining years until 2050, see Equation 1.</p>
+</div>
 </div>
 <div id="equation" class="section level1">
 <h1>EQUATION</h1>

@@ -34,9 +34,7 @@ This section will provide a brief explanation of methods and a description of th
 - tidyverse	(data	sorting,	plots,	etc.)
 - Rcmdr	(numSummary)
 - corrplot	(correlation	plot)
-
-
-# - kableExtra (tables)
+- kableExtra (tables)
 
 ### Data collection
 Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
@@ -50,9 +48,6 @@ The data was prepared in two different stages, first in Excel and then in R. For
 
 First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table 1 shows changes made to the sheet containing the main data.
 
-
-# TABLE
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/ghg_changes_tbl.R")
 ghg_changes_tbl
@@ -62,7 +57,10 @@ Note that Venezuela (VEN) did not have a value for income group in the metadata 
 
 Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table 2 shows changes made to the sheet containing the main data.
 
-# TABLE
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("code/pop_changes_tbl.R")
+pop_changes_tbl
+```
 
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and the remaining years until 2050, see Equation 1.
 
