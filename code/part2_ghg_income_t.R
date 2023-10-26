@@ -9,6 +9,7 @@ ghg_income_t <-
   filter(year == "2019",
          income_group %in% c("High income","Low income")) %>%
   drop_na(ghg_emission)
+ghg_income_t
 
 # Data normally distributed?
 ggplot(data=ghg_income_t, aes(x=ghg_emission, fill=income_group)) +
@@ -31,11 +32,13 @@ ggplot(data=ghg_income_t, aes(x=ghg_emission, fill=income_group)) +
 ggsave("figures/part2/distribution.png", width = 6, height = 4)
 
 # Data skewed to right -> Wilcoxon’s rank-sum	test
+ghg_income_t$income_group <- factor(ghg_income_t$income_group)
 
 # Wilcoxon Test: ghg_emission ~ income_group
-tapply(ghg_emission ~ income_group, median, na.action=na.omit, data=ghg_income_t) 
-# medians by group
-wilcox.test(ghg_emission ~ income_group, alternative="two.sided", data=ghg_income_t)
+Tapply(ghg_emission ~ income_group, median, na.action=na.omit, 
+       data=ghg_income_t) # medians by group
+wilcox.test(ghg_emission ~ income_group, alternative="two.sided", 
+            data=ghg_income_t)
 
 # Numerical summary
 numSummary(ghg_income_t[,"ghg_emission", drop=FALSE], groups=ghg_income_t$income_group,

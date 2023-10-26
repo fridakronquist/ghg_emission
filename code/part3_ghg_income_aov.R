@@ -58,8 +58,8 @@ plot(aov_ghg_sqrt)
 dev.off()
 
 # Kruskal Wallis rank sum test
-tapply(ghg_emission ~ income_group, FUN=median, na.action=na.omit, data=ghg_income_aov)
-# medians by group
+Tapply(ghg_emission ~ income_group, median, na.action=na.omit, 
+       data=ghg_income_aov) # medians by group
 kruskal.test(ghg_emission ~ income_group, data=ghg_income_aov)
 
 # Boxplots
