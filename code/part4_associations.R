@@ -1,4 +1,5 @@
 library(tidyverse)
+library(kableExtra)
 library(corrplot)
 
 source("code/data_preparation.R")
@@ -56,6 +57,15 @@ ghg_n$income_group <- factor(ghg_n$income_group, levels = c("High income",
 # Transform dataframe into a contingency table
 ghg_ct <- xtabs(n ~ income_group + budget_comparison, data=ghg_n)
 
+
+# Make table look nice
+ghg_ct_tbl <- ghg_ct %>%
+  kbl() %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 2))
+
+
 # Specify the factor levels to reorder bars
 ghg_n$income_group <- factor(ghg_n$income_group, levels = c("Low income", 
                                                             "Lower middle income", 
@@ -90,6 +100,7 @@ ggplot(data = ghg_n, aes(x=income_group, y=n,
   coord_flip()
 
 ggsave("figures/part4/fullfillment_bar_plot.png", width = 6, height = 4)
+
 
 # Check so all expected counts > 5. Else Fisher.
 chisq.test(ghg_ct, correct = FALSE)$expected

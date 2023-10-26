@@ -49,6 +49,8 @@ The data was prepared in two different stages, first in Excel and then in R. For
 
 First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table 1 shows changes made to the sheet containing the main data.
 
+Table 1. Changes made to greenhouse gas emission data in both Excel and R.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/ghg_changes_tbl.R")
 ghg_changes_tbl
@@ -57,6 +59,8 @@ ghg_changes_tbl
 Note that Venezuela (VEN) did not have a value for income group in the metadata sheet, “Venezuela, previously classified as an upper-middle income country, is now unclassified due to a lack of available data in the recent period” (World Bank, 2022).
 
 Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table 2 shows changes made to the sheet containing the main data.
+
+Table 2. Changes made to population data in both Excel and R.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/pop_changes_tbl.R")
@@ -171,3 +175,54 @@ Statistically significant differences in greenhouse gas emissions during 2019 we
 Figure 4. GHG emission per income group for the four income groups high, upper middle, lower middle, and low income. The median GHG emission of high income countries was 60590ktCO2, upper middle income countries was 21915ktCO2, lower middle income countries was 30530ktCO2, and low income countries was 29110ktCO2.
 
 A Kruskal-Wallis rank sum test returned a p-value of 0.18 ($\chi^2$(3)=4.891). Since the p-value was larger than the critical value ($\alpha$=0.05), the null hypothesis of equal population means was not rejected and it was concluded that there is not a (statistically) significant difference among the population means, i.e. there was not a difference in GHG emission between at the income groups.
+
+
+### Part 4: Associations between income group and carbon budget fullfillment
+The remaining carbon budget in line with keeping global warming to 1.5°C was 500 GtCO2 (50% probability) for 2020 and forward (IPCC, 2021). During 2019, approximately 46 GtCO2 equivalents of total greenhouse gases were released globally. Adding that to the carbon budget for 2020 gives a carbon budget of around 546 Gt for 2019. UN projects the world population to reach 9.8 billion in 2050 (UN, 2017). The world population year 2019 was estimated to be approximately 7.7 billion people. Given an average population of ~ 8.7 billion people between 2019 and 2050, that results in a carbon budget per person for 2019 of 0.002kt or 2t CO2/person/year until 2050.
+The fulfillment of the 2019 carbon budget per capita and year until 2050 based on income group was noted in the contingency table below (Table 3).
+
+Table 3. Contingency table showing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("code/part4_associations.R")
+ghg_ct_tbl
+```
+
+
+# Table
+
+The contingency table in Table 3 is illustrated in Figure 5.
+
+![](figures/part4/fullfillment_bar_plot.png)
+Figure 5. Bar plot visualizing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
+
+A chi-square test for association indicated there was a significant association between income group and carbon budget fulfillment ((χ2)=76.97, df=3, p<.001, χ2-test for association). For further nuance of the results, the individual chi-square components were analyzed, see Table 4.
+
+Table 4. Individual chi-square components from the chi-square test.
+
+# TABLE
+
+The largest individual chi-square value was for Low income and Under (29.14) which was contributing approximately 38% of the total chi-square value of 76.97, i.e. this association has had a large effect on the total result. The second largest individual chi-square value was for *High income and Under* (12.00), followed by *Upper middle
+income and Under* (10.95), *Lower middle income and Under* (10.95), *Low income and Over* (7.77), *High income and Over* (3.20), *Upper middle income and Over* (2.92),
+and *Lower middle income and Over* (2.32).
+
+Figure 6 shows the contribution to the total chi-square result in percent for each association based on their individual chi-square component. The bigger and darker the filled circle is, the larger the contribution of that particular association to the total chi-square value.
+
+![](figures/part4/corr_plot.png)
+
+Figure 6. Contribution to the total chi-square result in percent for each association based on their individual chi-square component.
+
+Figure 6 illustrates the largest contribution of the association of low income-under (~38%) to the total chi-square result. It also shows the smaller contributions of *high income-under* (~16%), *upper middle income-under* (~14%), *lower middle income-under* (~11%), *low income-over* (~10%), *high income-over* (~4%), *upper middle income-over* (~4%), and *lower middle income-over* (~3%).
+
+Analyzing the residuals of the chi-square test gave an indication of which attributes
+contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table 5 below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.
+
+Table 5. Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis.
+
+# TABLE
+
+There had been 19 observations on low income countries under the carbon budget per
+capita and year. As seen in Table X, if only chance would have affected their choice the expected frequency would have been around 6, i.e the large individual chi square value of 29.14 should be interpreted as low income countries emitted under the carbon budget per capita and year much more than expected.
+
+The same reasoning, but opposite, goes for high income countries under the carbon budget per capita and year. 0 observations were made compared to around 12 expected, i.e. the individual chi square value of 12.00 should be interpreted as high income countries emitted under the carbon budget per capita and year less than expected.
+Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.
