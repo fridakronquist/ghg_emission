@@ -108,7 +108,15 @@ For the data in the ANOVA model to comply with the second assumption of normal d
 
 If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).
 
-# EQUATIONS
+$$\begin{equation}
+\tag{Eq. 2}
+data\_log\_transformed = \log_{10}\left(ghg\_emisson\right)
+\end{equation}$$
+
+$$\begin{equation}
+\tag{Eq. 3}
+data\_sqrt\_transformed = \sqrt{ghg\_emisson}
+\end{equation}$$
 
 If the data did not meet the ANOVA assumptions using either of mentioned transformations, the Kruskal-Wallis rank sum test for non-parametric data was used instead. If the test showed that there was a difference between at least two of the groups, a post-hoc test (using the	PMCMRplus	package) would be performed to be able to decide between which groups the difference lay.
 
