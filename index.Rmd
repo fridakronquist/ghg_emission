@@ -10,10 +10,6 @@ output:
     toc_depth: 4
 ---
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
-library(gt)
-```
-
 
 ## Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
@@ -39,7 +35,8 @@ This section will provide a brief explanation of methods and a description of th
 - Rcmdr	(numSummary)
 - corrplot	(correlation	plot)
 
-# - gt (tables)
+
+# - kableExtra (tables)
 
 ### Data collection
 Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
@@ -53,7 +50,13 @@ The data was prepared in two different stages, first in Excel and then in R. For
 
 First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table 1 shows changes made to the sheet containing the main data.
 
+
 # TABLE
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("code/ghg_changes_tbl.R")
+ghg_changes_tbl
+```
 
 Note that Venezuela (VEN) did not have a value for income group in the metadata sheet, “Venezuela, previously classified as an upper-middle income country, is now unclassified due to a lack of available data in the recent period” (World Bank, 2022).
 
