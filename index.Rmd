@@ -64,7 +64,11 @@ pop_changes_tbl
 
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and the remaining years until 2050, see Equation 1.
 
-# EQUATION
+
+$$\begin{equation}
+\tag{Eq. 1}
+carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left}
+\end{equation}$$
 
 The year 2050 was chosen as it is the year UNDP mentions in their emission goal to reach global net zero emission of CO2. Which is related to the thirteenth sustainable development goal: Climate action (UNDP, 2023). UN projects the population in 2050 will be 9.8 billion people (UN, 2023b).
 
