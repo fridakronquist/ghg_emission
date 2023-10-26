@@ -62,22 +62,19 @@ tapply(ghg_emission ~ income_group, FUN=median, na.action=na.omit, data=ghg_inco
 # medians by group
 kruskal.test(ghg_emission ~ income_group, data=ghg_income_aov)
 
-# Boxplot
+# Boxplots
 # Change order of boxes
-ghg_income_aov$income_group <- factor(ghg_income_aov$income_group, 
-                                      levels=c("Low income", 
-                                               "Lower middle income", 
-                                               "Upper middle income", 
-                                               "High income"))
-ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
-  geom_boxplot() +
-  labs(title = "Greenhouse Gas Emission Distribution 2019",
-       subtitle = "Depending on income group",
-       y = "Frequency",
+ghg_income_aov$income_group <- factor(ghg_income_aov$income_group, levels=c("Low income", "Lower middle income", "Upper middle income", "High income"))
+
+box_aov_outliers <- ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
+  geom_boxplot() + 
+  labs(title = "Greenhouse Gas Emission Distribution",
+       subtitle = "Depending on income group (2019)",
+       y = "Frequency", 
        x = "GHG emission (kt)") +
-  theme_bw() +
-  theme(plot.title = element_text(face="bold", size=15),
-        plot.subtitle = element_text(size=14),
+  theme_bw() + 
+  theme(plot.title = element_text(face="bold", size=18),
+        plot.subtitle = element_text(size=15),
         axis.title.x = element_text(size=16),
         axis.title.y = element_text(size=16),
         axis.text.x = element_text(size=12),
@@ -91,24 +88,25 @@ ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_gro
   annotate("text", x = 2.9, y = 12705090, label = "CHN") +
   annotate("text", x = 1.9, y = 3394870, label = "IND")
 
-ggsave("figures/part3/box_plot.png", width = 6, height = 4)
-
 # Same plot but without outliers
-ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
-  geom_boxplot(outlier.shape = NA) +
-  labs(title = "Greenhouse Gas Emission 2019",
-       subtitle = "Grouped by income",
-       y = "Frequency",
+box_aov_nooutliers <- ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
+  geom_boxplot(outlier.shape = NA) + 
+  labs(title = " ",
+       y = "Frequency", 
        x = "GHG emission (kt)") +
-  theme_bw() +
+  theme_bw() + 
   theme(plot.title = element_text(face="bold", size=18),
         plot.subtitle = element_text(size=15),
         axis.title.x = element_text(size=16),
         axis.title.y = element_text(size=16),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
-        legend.position = "none") +
+        legend.position = "none") + 
   scale_color_manual(values=c("#84B0A5","#77919F","#6A7198", "#5D5292")) +
   coord_flip(ylim=quantile(ghg_income_aov$ghg_emission, c(0.1, 0.9)))
 
-ggsave("figures/part3/box_plot_zoomed.png", width = 6, height = 4)
+# both box plots in same figure
+plot_grid(box_aov_outliers, box_aov_nooutliers, ncol = 1, nrow = 2)
+
+ggsave("figures/part3/box_plots.png", width = 6, height = 4)
+
