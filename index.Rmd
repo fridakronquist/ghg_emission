@@ -62,8 +62,10 @@ source("code/pop_changes_tbl.R")
 pop_changes_tbl
 ```
 
-The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and the remaining years until 2050, see Equation 1.
+The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and 
+the remaining years until 2050, see Equation 1.
 
+# EQUATION NOT WORKING WHEN PUSHED TO GITHUB 
 
 $$\begin{equation}
 \tag{Eq. 1}
@@ -107,6 +109,8 @@ The Residuals vs Fitted plot showed the spread of the residuals around a horizon
 For the data in the ANOVA model to comply with the second assumption of normal distribution, the Normal Q-Q plot would show the residuals following the straight dashed line	in the graph. If the residuals deviated too much from the straight line the distribution of the data was considered non-normal.
 
 If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).
+
+# EQUATIONS NOT WORKING WHEN PUSHED TO GITHUB 
 
 $$\begin{equation}
 \tag{Eq. 2}
