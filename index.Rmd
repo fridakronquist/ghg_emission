@@ -197,7 +197,10 @@ A chi-square test for association indicated there was a significant association 
 
 Table 4. Individual chi-square components from the chi-square test.
 
-# TABLE
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("code/part4_associations.R")
+chisq_comp_tbl
+```
 
 The largest individual chi-square value was for Low income and Under (29.14) which was contributing approximately 38% of the total chi-square value of 76.97, i.e. this association has had a large effect on the total result. The second largest individual chi-square value was for *High income and Under* (12.00), followed by *Upper middle
 income and Under* (10.95), *Lower middle income and Under* (10.95), *Low income and Over* (7.77), *High income and Over* (3.20), *Upper middle income and Over* (2.92),
@@ -216,10 +219,13 @@ contributed most to the chi-square result, i.e. which observed frequency of attr
 
 Table 5. Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis.
 
-# TABLE
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("code/part4_associations.R")
+chisq_exp_diff_tbl
+```
 
 There had been 19 observations on low income countries under the carbon budget per
-capita and year. As seen in Table X, if only chance would have affected their choice the expected frequency would have been around 6, i.e the large individual chi square value of 29.14 should be interpreted as low income countries emitted under the carbon budget per capita and year much more than expected.
+capita and year. As seen in Table 5, if only chance would have affected their choice the expected frequency would have been around 6, i.e the large individual chi square value of 29.14 should be interpreted as low income countries emitted under the carbon budget per capita and year much more than expected.
 
 The same reasoning, but opposite, goes for high income countries under the carbon budget per capita and year. 0 observations were made compared to around 12 expected, i.e. the individual chi square value of 12.00 should be interpreted as high income countries emitted under the carbon budget per capita and year less than expected.
 Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.

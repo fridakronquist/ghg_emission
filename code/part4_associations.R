@@ -57,15 +57,6 @@ ghg_n$income_group <- factor(ghg_n$income_group, levels = c("High income",
 # Transform dataframe into a contingency table
 ghg_ct <- xtabs(n ~ income_group + budget_comparison, data=ghg_n)
 
-
-# Make table look nice
-ghg_ct_tbl <- ghg_ct %>%
-  kbl() %>%
-  kable_styling(full_width = FALSE) %>%
-  column_spec(1, bold = T) %>%
-  add_header_above(c(" " = 1, "Budget comparison" = 2))
-
-
 # Specify the factor levels to reorder bars
 ghg_n$income_group <- factor(ghg_n$income_group, levels = c("Low income", 
                                                             "Lower middle income", 
@@ -109,7 +100,7 @@ chisq.test(ghg_ct, correct = FALSE)$expected
 chisq_test1 <- chisq.test(ghg_ct, correct = FALSE)
 
 # Chi-square Components
-round(chisq_test1$residuals^2, 2) 
+chisq_comp <- round(chisq_test1$residuals^2, 2) 
 
 # Calculate the percentage contribution
 contrib1 <- 100*chisq_test1$residuals^2/chisq_test1$statistic
@@ -125,8 +116,36 @@ dev.off()
 ghg_ct
 
 # Expected Counts
-chisq_test1$expected 
+chisq_exp <- chisq_test1$expected 
 
 # Calculate the difference between counts and expected counts
-ghg_ct - chisq_test1$expected
+chisq_diff <- ghg_ct - chisq_exp
 
+
+# Make ghg_ct table look nice
+ghg_ct_tbl <- ghg_ct %>%
+  kbl() %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 2))
+
+# Make chisq_comp table look nice
+chisq_comp_tbl <- chisq_comp %>%
+  kbl() %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 2))
+
+# Make chisq_exp and chisq_diff table look nice 
+chisq_exp_tbl <- round(chisq_exp, 1)
+chisq_diff_tbl <- round(chisq_diff, 1)
+
+chisq_exp_diff_tbl <- cbind(chisq_exp_tbl, chisq_diff_tbl) 
+
+chisq_exp_diff_tbl <- chisq_exp_diff_tbl %>%
+  kbl() %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  column_spec(4:5, background = "#f2f2f2") %>%
+  add_header_above(c(" " = 1, "Expected frequency" = 2, "Difference"=2)) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 4)) 
