@@ -262,3 +262,29 @@ income (Mdn=21915), lower middle income (Mdn=30530), and low income (Mdn=29110)
 *Q4. Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?*
 
 Yes. There was a significant association between income group and carbon budget fulfillment (($\chi^2$)=76.97, df=3, p<.001, $\chi^2$-test for association). Low income countries emitted under the carbon budget per capita and year until 2050 much more than expected (obs. 19, exp. ~6). High income countries emitted under the carbon budget less than expected (obs. 0, exp. 12). Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.
+
+## References
+IPCC, 2021: Chapter 5. In: Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Canadell, J.G., P.M.S. Monteiro, M.H. Costa, L. Cotrim da Cunha, P.M. Cox, A.V. Eliseev, S. Henson, M. Ishii, S. Jaccard, C. Koven, A. Lohila, P.K. Patra, S. Piao, J. Rogelj, S. Syampungani, S. Zaehle, and K. Zickfeld, 2021: Global Carbon and other Biogeochemical Cycles and Feedbacks. In Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Masson-Delmotte, V., P. Zhai, A. Pirani, S.L. Connors, C. Péan, S. Berger, N. Caud, Y. Chen, L. Goldfarb, M.I. Gomis, M. Huang, K. Leitzell, E. Lonnoy, J.B.R. Matthews, T.K. Maycock, T. Waterfield, O. Yelekçi, R. Yu, and B. Zhou (eds.)]. Cambridge University Press, Cambridge, United Kingdom and New York, NY, USA, pp. 673–816, doi: 10.1017/9781009157896.007 .]
+
+UN. (2022, January 8). 5 things you should know about the greenhouse gases warming the planet.
+https://news.un.org/en/story/2022/01/1109322?gclid=CjwKCAiA2fmdBhBpEiwA4CcHzUwrR4jLTspL71lj2Ws5qFqjrJOTwmP0k7811SeHnzcMnlizJW-1XRoCRzQQAvD_BwE
+
+UN. (2023a, January 9). Inequality – Bridging the Divide.
+https://www.un.org/en/un75/inequality-bridging-divide
+
+UN. (2023b, January 9). World population projected to reach 9.8 billion in 2050, and 11.2 billion in 2100. 
+https://www.un.org/en/desa/world-population-projected-reach-98-billion-2050-and-112-billion-2100
+
+UNDP. (2023, January 9). Goal 13 CLIMATE ACTION. https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=Cj0KCQiAtvSdBhD0ARIsAPf8oNnNDkgZy-XOe1TfBZIdNeON7m6HYxyS2cTCc34xeR5SzGZYNxGm3MUaArtUEALw_wcB#climate-action
+
+World Bank (2022, July 1). New World Bank country classifications by income level: 2021-2022. 
+https://blogs.worldbank.org/opendata/new-world-bank-country-classifications-income-level-2021-2022
+
+World Bank. (2023a, January 9). Total greenhouse gas emissions (kt of CO2 equivalent).
+https://data.worldbank.org/indicator/EN.ATM.GHGT.KT.CE?view=chart
+
+World Bank. (2023b, January 9). Population, total.
+https://data.worldbank.org/indicator/SP.POP.TOTL?end=2019&start=2019&view=chart
+
+World Bank. (2023c, January 9). Countries and Economies.
+https://data.worldbank.org/country
