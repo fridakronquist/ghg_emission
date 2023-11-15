@@ -4,7 +4,7 @@ author: Frida Kronquist
 email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 output: 
-  html_document:
+  bookdown::html_document2:
     toc: true
     toc_float: true
     toc_depth: 4
@@ -291,7 +291,7 @@ https://data.worldbank.org/country
 
 ## Appendix
 
-### Data preparation
+### Data Preparation
 This appendix contains a list of all economies, regions, etc., that was removed during the data preparation. 
 
 The following economies were removed:
