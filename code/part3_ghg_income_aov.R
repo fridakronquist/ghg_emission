@@ -69,25 +69,26 @@ ghg_income_aov$income_group <- factor(ghg_income_aov$income_group, levels=c("Low
 
 box_aov_outliers <- ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
   geom_boxplot() + 
-  labs(title = "Greenhouse Gas Emission Distribution",
+  labs(title = "GHG Emission Distribution",
        subtitle = "Depending on income group (2019)",
        y = "Frequency", 
        x = "GHG emission (kt)") +
   theme_bw() + 
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+  theme(plot.title = element_text(face="bold", size=16),
+        plot.subtitle = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
-        legend.position = "none") +
+        legend.position = "none",
+        plot.margin = margin(0.5,2,0,1, "cm")) +
   scale_color_manual(values=c("#84B0A5","#77919F","#6A7198", "#5D5292")) +
   coord_flip() +
-  annotate("text", x = 3.9, y = 1166510, label = "JPN") +
-  annotate("text", x = 3.9, y = 6001210, label = "USA") +
-  annotate("text", x = 2.9, y = 2476840, label = "RUS") +
-  annotate("text", x = 2.9, y = 12705090, label = "CHN") +
-  annotate("text", x = 1.9, y = 3394870, label = "IND")
+  annotate("text", x = 3.5, y = 1166510, label = "JPN") +
+  annotate("text", x = 3.5, y = 6001210, label = "USA") +
+  annotate("text", x = 2.5, y = 2476840, label = "RUS") +
+  annotate("text", x = 2.5, y = 12502000, label = "CHN") +
+  annotate("text", x = 1.5, y = 3394870, label = "IND")
 
 # Same plot but without outliers
 box_aov_nooutliers <- ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emission, color=income_group)) +
@@ -96,13 +97,14 @@ box_aov_nooutliers <- ggplot(data=ghg_income_aov, aes(x=income_group, y=ghg_emis
        y = "Frequency", 
        x = "GHG emission (kt)") +
   theme_bw() + 
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+  theme(plot.title = element_text(face="bold", size=16),
+        plot.subtitle = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
-        legend.position = "none") + 
+        legend.position = "none",
+        plot.margin = margin(0,2,0.5,1, "cm")) + 
   scale_color_manual(values=c("#84B0A5","#77919F","#6A7198", "#5D5292")) +
   coord_flip(ylim=quantile(ghg_income_aov$ghg_emission, c(0.1, 0.9)))
 
