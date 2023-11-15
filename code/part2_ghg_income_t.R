@@ -20,13 +20,14 @@ ggplot(data=ghg_income_t, aes(x=ghg_emission, fill=income_group)) +
        y = "Frequency",
        x = "GHG emission (kt)") +
   theme_bw() +
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+  theme(plot.title = element_text(face="bold", size=16),
+        plot.subtitle = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
-        legend.position = "none") +
+        legend.position = "none",
+        plot.margin = margin(0.5,2,1,1, "cm")) +
   scale_fill_manual(values=c("#5D5292", "#84B0A5"))
 
 ggsave("figures/part2/distribution.png", width = 6, height = 4)
@@ -53,17 +54,18 @@ plot_box_outliers <- ggplot(ghg_income_t, aes(x=reorder(income_group, ghg_emissi
        y = "GHG emission (kt)", 
        x = "Income group") +
   theme_bw() + 
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+  theme(plot.title = element_text(face="bold", size=16),
+        plot.subtitle = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12), 
-        legend.position = "none") +
+        legend.position = "none",
+        plot.margin = margin(0.5,2,0,1, "cm")) +
   scale_color_manual(values=c("#5D5292","#84B0A5")) +
   coord_flip() +
-  annotate("text", x = 1.9, y = 6001210, label = "USA") +
-  annotate("text", x = 1.9, y = 1166510, label = "JPN")
+  annotate("text", x = 1.75, y = 6001210, label = "USA") +
+  annotate("text", x = 1.75, y = 1166510, label = "JPN")
 
 # Same plot without outliers
 plot_box_nooutliers <- ggplot(ghg_income_t, aes(x=reorder(income_group, ghg_emission), y=ghg_emission, color=income_group)) + 
@@ -72,17 +74,16 @@ plot_box_nooutliers <- ggplot(ghg_income_t, aes(x=reorder(income_group, ghg_emis
        y = "GHG emission (kt)", 
        x = "Income group") +
   theme_bw() + 
-  theme(plot.title = element_text(face="bold", size=18),
-        plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+  theme(plot.title = element_text(face="bold", size=16),
+        plot.subtitle = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
-        legend.position = "none") +
+        legend.position = "none",
+        plot.margin = margin(0,2,0.5,1, "cm")) +
   scale_color_manual(values=c("#5D5292","#84B0A5")) +
-  coord_flip(ylim=quantile(ghg_income_t$ghg_emission, c(0.1, 0.9))) +
-  annotate("text", x = 1.9, y = 6001210, label = "USA") +
-  annotate("text", x = 1.9, y = 1166510, label = "JPN")
+  coord_flip(ylim=quantile(ghg_income_t$ghg_emission, c(0.1, 0.9)))
 
 # both box plots in same figure
 plot_grid(plot_box_outliers, plot_box_nooutliers, ncol = 1, nrow = 2)
