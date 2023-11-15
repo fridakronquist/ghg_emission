@@ -5,16 +5,13 @@ email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 output: 
   bookdown::html_document2:
-    toc: true
-    toc_float: true
-    toc_depth: 4
-header-includes:
-- \usepackage{float}
+     toc: true
+     toc_float: true
+     toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
 # devtools::install_github(repo="haozhu233/kableExtra", ref="a6af5c0")
-knitr::opts_chunk$set(echo = TRUE)
 library(kableExtra)
 ```
 
