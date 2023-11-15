@@ -64,7 +64,6 @@ ggplot(ghg_tot, aes(x=year, y=log10(total_ghg))) +
   geom_smooth(method=lm, se=FALSE, color="#D5542C") +
   geom_point(color="#D5542C") +
   labs(title = "Total yearly GHG Emission 1990-2019",
- #      subtitle = "",
        y = "log10(GHG emission (kt))", 
        x = "Year") +
   theme_bw() + 
