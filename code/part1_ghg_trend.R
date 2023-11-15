@@ -70,8 +70,8 @@ ggplot(ghg_tot, aes(x=year, y=log10(total_ghg))) +
   theme_bw() + 
   theme(plot.title = element_text(face="bold", size=16),
         plot.subtitle = element_text(size=15),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
+        axis.title.x = element_text(size=14),
+        axis.title.y = element_text(size=14),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
         plot.margin = margin(0.5,2,1,1, "cm")) +
