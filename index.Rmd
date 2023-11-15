@@ -86,7 +86,6 @@ kbl(ghg_changes_df, align = "l",
   footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.") 
 ```
 
-
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and 
 the remaining years until 2050, see Equation \@ref(eq:budget).
 
@@ -154,42 +153,43 @@ To investigate what attribute contributed most to the results of the chi-square 
 This section will present the results of the analysis.
 
 ### Part 1: Global green house gas emission trend 1990-2019
-Simple linear regression was used to test if the total GHG emissions increased from 1990 to 2019, i.e. to test if the year significantly predicted the total greenhouse gas emissions. The fitted regression model was: $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. A visualization of the regression model can be seen in Figure 1.
+Simple linear regression was used to test if the total GHG emissions increased from 1990 to 2019, i.e. to test if the year significantly predicted the total greenhouse gas emissions. The fitted regression model was: $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. A visualization of the regression model can be seen in Figure \@ref(fig:1reg).
 
-![](figures/part1/regression_plot.png)
-Figure 1. Scatterplot showing the linear regression model : $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$.
+```{r 1reg, fig.cap = "Scatterplot showing the linear regression model, log10(GHG_emission) = 0.0079(year) − 8.3.", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part1/regression_plot.png")
+```
+
 
 The overall regression was statistically significant (R2 = .97, F(28, 1) = 1122, p < .001). It was found that the year significantly predicted the total emission of GHGs ($\beta$ = 0.0079, p = < .001). I.e. total greenhouse gas emissions significantly increased from 1990 to 2019.
 
 
 ### Part 2: Difference in green house gas emission low vs high income countries
-As seen in Figure 2, the data was found to be skewed to the right. Hence, a Wilcoxon rank-sum test was used to analyze if there was a difference in greenhouse gas emissions between high-income and low-income countries in 2019.
+As seen in Figure \@ref(fig:2dist), the data was found to be skewed to the right. Hence, a Wilcoxon rank-sum test was used to analyze if there was a difference in greenhouse gas emissions between high-income and low-income countries in 2019.
 
-![](figures/part2/distribution.png)
-
-Figure 2. Histograms showing the right-skewed distribution of GHG emission for high-income and low-income countries.
+```{r 2dist, fig.cap = "Histograms showing the right-skewed distribution of GHG emission for high-income and low-income countries.", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part2/distribution.png")
+```
 
 The median greenhouse gas emission in the high-income group was 60 590kt, whereas the median greenhouse gas emission in the low-income group was 29 110kt. There was a statistically significant difference between the groups in terms of median greenhouse gas emission in 2019 (W=1040, p = .024, $\eta_{high}$=57, $\eta_{low}$=28, Wilcoxon’s rank-sum test). Based on the medians, high-income countries released more than twice, 31 480kt, more greenhouse gases than low-income countries.
 
 The average greenhouse gas emission from high-income countries was 261 137kt (SD 812
 009), and the average emission from low-income countries was 36 169kt (SD 34 519). The large difference between the mean and the median, especially for high-income countries, confirms the observation made from the histogram (Figure 2) that the data was skewed. In this case, it means that there are a few countries in the high-income group that releases much more greenhouse gases than the other countries in the same group.
 
-The box plots below (Figure 3) illustrate the difference in median greenhouse gas emissions between high- and low-income countries in 2019. Also here it is possible to see that there are a few countries that release way more than the rest of the high-income countries by observing the outliers. The USA released the most greenhouse gases out of the high-income countries in 2019, 6 001 210kt. That is more than five times the amount released by Japan, which had the second largest greenhouse gas emission of 1 166 510kt.
+The box plots below (Figure \@ref(fig:2box)) illustrate the difference in median greenhouse gas emissions between high- and low-income countries in 2019. Also here it is possible to see that there are a few countries that release way more than the rest of the high-income countries by observing the outliers. The USA released the most greenhouse gases out of the high-income countries in 2019, 6 001 210kt. That is more than five times the amount released by Japan, which had the second largest greenhouse gas emission of 1 166 510kt.
 
-![](figures/part2/box_plots.png)
+```{r 2box, fig.cap = "Boxplots showing the differences in GHG emission between high-income and low-income countries, both with and without extreme cases (outliers).", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part2/box_plots.png")
+```
 
-Figure 3. Boxplots showing the differences in GHG emission between high-income and low-income countries, both with and without extreme cases (outliers).
-
-Another observation worth mentioning is that the high-income sample contained 57
-countries, and the low-income sample contained 28 countries. That the low-income sample was around half the sample size of high-income countries may have affected the results of this analysis.
+Another observation worth mentioning is that the high-income sample contained 57 countries, and the low-income sample contained 28 countries. That the low-income sample was around half the sample size of high-income countries may have affected the results of this analysis.
 
 
 ### Part 3: Difference in greenhouse gas emission between four income groups
-Statistically significant differences in greenhouse gas emissions during 2019 were not observed between countries in the four income groups, high income (Mdn=60590), upper middle income (Mdn=21915), lower middle income (Mdn=30530), and low income
-(Mdn=29110) as visualized in Figure 4 below.
+Statistically significant differences in greenhouse gas emissions during 2019 were not observed between countries in the four income groups, high income (Mdn=60590), upper middle income (Mdn=21915), lower middle income (Mdn=30530), and low income (Mdn=29110) as visualized in Figure \@ref(fig:3box) below.
 
-![](figures/part3/box_plots.png)
-Figure 4. GHG emission per income group for the four income groups high, upper middle, lower middle, and low income. The median GHG emission of high income countries was 60590ktCO2, upper middle income countries was 21915ktCO2, lower middle income countries was 30530ktCO2, and low income countries was 29110ktCO2.
+```{r 3box, fig.cap = "GHG emission per income group for the four income groups high, upper middle, lower middle, and low income. The median GHG emission of high income countries was 60590ktCO2, upper middle income countries was 21915ktCO2, lower middle income countries was 30530ktCO2, and low income countries was 29110ktCO2.", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part3/box_plots.png")
+```
 
 A Kruskal-Wallis rank sum test returned a p-value of 0.18 ($\chi^2$(3)=4.891). Since the p-value was larger than the critical value ($\alpha$=0.05), the null hypothesis of equal population means was not rejected and it was concluded that there is not a (statistically) significant difference among the population means, i.e. there was not a difference in GHG emission between at the income groups.
 
@@ -211,10 +211,11 @@ ghg_ct %>%
 ```
 
 
-The contingency table in Table \@ref(tab:ct) is illustrated in Figure 5.
+The contingency table in Table \@ref(tab:ct) is illustrated in Figure \@ref(fig:4fulfill).
 
-![](figures/part4/fullfillment_bar_plot.png)
-Figure 5. Bar plot visualizing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
+```{r 4fulfill, fig.cap = "Bar plot visualizing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part4/fullfillment_bar_plot.png")
+```
 
 A chi-square test for association indicated there was a significant association between income group and carbon budget fulfillment ((χ2)=76.97, df=3, p<.001, χ2-test for association). For further nuance of the results, the individual chi-square components were analyzed, see Table \@ref(tab:comp).
 
@@ -234,16 +235,15 @@ The largest individual chi-square value was for Low income and Under (29.14) whi
 income and Under* (10.95), *Lower middle income and Under* (10.95), *Low income and Over* (7.77), *High income and Over* (3.20), *Upper middle income and Over* (2.92),
 and *Lower middle income and Over* (2.32).
 
-Figure 6 shows the contribution to the total chi-square result in percent for each association based on their individual chi-square component. The bigger and darker the filled circle is, the larger the contribution of that particular association to the total chi-square value.
+Figure \@ref(fig:4corr) shows the contribution to the total chi-square result in percent for each association based on their individual chi-square component. The bigger and darker the filled circle is, the larger the contribution of that particular association to the total chi-square value.
 
-![](figures/part4/corr_plot.png)
+```{r 4corr, fig.cap = "Contribution to the total chi-square result in percent for each association based on their individual chi-square component.", echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("figures/part4/corr_plot.png")
+```
 
-Figure 6. Contribution to the total chi-square result in percent for each association based on their individual chi-square component.
+Figure \@ref(fig:4corr) illustrates the largest contribution of the association of low income-under (~38%) to the total chi-square result. It also shows the smaller contributions of *high income-under* (~16%), *upper middle income-under* (~14%), *lower middle income-under* (~11%), *low income-over* (~10%), *high income-over* (~4%), *upper middle income-over* (~4%), and *lower middle income-over* (~3%).
 
-Figure 6 illustrates the largest contribution of the association of low income-under (~38%) to the total chi-square result. It also shows the smaller contributions of *high income-under* (~16%), *upper middle income-under* (~14%), *lower middle income-under* (~11%), *low income-over* (~10%), *high income-over* (~4%), *upper middle income-over* (~4%), and *lower middle income-over* (~3%).
-
-Analyzing the residuals of the chi-square test gave an indication of which attributes
-contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table \@ref(tab:expdiff) below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.
+Analyzing the residuals of the chi-square test gave an indication of which attributes contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table \@ref(tab:expdiff) below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/part4_associations.R")
@@ -274,7 +274,7 @@ This report focuses on total GHG emissions per country. If instead GHG emission 
 Additionally, it is not known how the total GHG emission is calculated, and which country the emission is recorded in when it comes to offshore consumption (export), same goes for tourism and other activities performed by individuals living in another country from where the emission is being produced.
 
 ### Result
-The Wilcoxon rank-sum test in part 2 of this report and the Kruskal-Wallis rank sum test in part 3 gave different results. Considering the same data for low-income and high-income countries was used, either the Wilcoxon rank-sum test should have indicated that there was no significant difference between the income groups. Or, the Kruskal-Wallis rank sum test should have shown that there was a significant difference between at least two groups, and post-hoc would have shown that there was a difference between high-income and low-income countries in terms of GHG emissions. However, observing the boxplots of the two parts, Figure 3 (boxplot for part 2) shows it is likely to be a difference as the median line of the high-income box lies outside of the low-income box entirely. The same goes for the boxes in Figure 4 (boxplot for part 3).
+The Wilcoxon rank-sum test in part 2 of this report and the Kruskal-Wallis rank sum test in part 3 gave different results. Considering the same data for low-income and high-income countries was used, either the Wilcoxon rank-sum test should have indicated that there was no significant difference between the income groups. Or, the Kruskal-Wallis rank sum test should have shown that there was a significant difference between at least two groups, and post-hoc would have shown that there was a difference between high-income and low-income countries in terms of GHG emissions. However, observing the boxplots of the two parts, Figure \@ref(fig:2box) (boxplot for part 2) shows it is likely to be a difference as the median line of the high-income box lies outside of the low-income box entirely. The same goes for the boxes in Figure \@ref(fig:3box) (boxplot for part 3).
 
 Hence, the opposing test results might be due to how the different tests work. Although they are both non-parametric tests, maybe the Wilcoxon rank-sum test is less sensitive than the Kruskal-Wallis rank sum test. It is also possible that the difference between the tests might be because the data was transformed in part 3, but not in part 2. Regardless, this is a topic for further research.
 
@@ -289,10 +289,7 @@ Yes. There was a significant difference between the groups in terms of median gr
 
 *Q3. Was there a difference in greenhouse gas emissions between the income groups low, lower middle, upper middle, and high income in 2019?*
 
-No. Significant differences in greenhouse gas emissions during 2019 were not observed
-between countries in the four income groups, high income (Mdn=60590), upper middle
-income (Mdn=21915), lower middle income (Mdn=30530), and low income (Mdn=29110)
-($\chi^2$(3)=4.891, p=.18, Kruskal-Wallis rank sum test).
+No. Significant differences in greenhouse gas emissions during 2019 were not observed between countries in the four income groups, high income (Mdn=60590), upper middle income (Mdn=21915), lower middle income (Mdn=30530), and low income (Mdn=29110) ($\chi^2$(3)=4.891, p=.18, Kruskal-Wallis rank sum test).
 
 *Q4. Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?*
 
