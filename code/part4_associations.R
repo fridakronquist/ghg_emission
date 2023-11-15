@@ -123,30 +123,9 @@ chisq_exp <- chisq_test1$expected
 chisq_diff <- ghg_ct - chisq_exp
 
 
-# Make ghg_ct table look nice
-ghg_ct_tbl <- ghg_ct %>%
-  kbl() %>%
-  kable_styling(full_width = FALSE) %>%
-  column_spec(1, bold = T) %>%
-  add_header_above(c(" " = 1, "Budget comparison" = 2))
-
-# Make chisq_comp table look nice
-chisq_comp_tbl <- chisq_comp %>%
-  kbl() %>%
-  kable_styling(full_width = FALSE) %>%
-  column_spec(1, bold = T) %>%
-  add_header_above(c(" " = 1, "Budget comparison" = 2))
-
-# Make chisq_exp and chisq_diff table look nice 
+# Join exp and diff table 
 chisq_exp_tbl <- round(chisq_exp, 1)
 chisq_diff_tbl <- round(chisq_diff, 1)
 
-chisq_exp_diff_tbl <- cbind(chisq_exp_tbl, chisq_diff_tbl) 
+chisq_exp_diff <- cbind(chisq_exp_tbl, chisq_diff_tbl) 
 
-chisq_exp_diff_tbl <- chisq_exp_diff_tbl %>%
-  kbl() %>%
-  kable_styling(full_width = FALSE) %>%
-  column_spec(1, bold = T) %>%
-  column_spec(4:5, background = "#f2f2f2") %>%
-  add_header_above(c(" " = 1, "Expected frequency" = 2, "Difference"=2)) %>%
-  add_header_above(c(" " = 1, "Budget comparison" = 4)) 

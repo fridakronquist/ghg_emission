@@ -199,27 +199,38 @@ A Kruskal-Wallis rank sum test returned a p-value of 0.18 ($\chi^2$(3)=4.891). S
 
 ### Part 4: Associations between income group and carbon budget fullfillment
 The remaining carbon budget in line with keeping global warming to 1.5°C was 500 GtCO2 (50% probability) for 2020 and forward (IPCC, 2021). During 2019, approximately 46 GtCO2 equivalents of total greenhouse gases were released globally. Adding that to the carbon budget for 2020 gives a carbon budget of around 546 Gt for 2019. UN projects the world population to reach 9.8 billion in 2050 (UN, 2017). The world population year 2019 was estimated to be approximately 7.7 billion people. Given an average population of ~ 8.7 billion people between 2019 and 2050, that results in a carbon budget per person for 2019 of 0.002kt or 2t CO2/person/year until 2050.
-The fulfillment of the 2019 carbon budget per capita and year until 2050 based on income group was noted in the contingency table below (Table 3).
-
-Table 3. Contingency table showing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
+The fulfillment of the 2019 carbon budget per capita and year until 2050 based on income group was noted in the contingency table below (Table \@ref(tab:ct)).
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/part4_associations.R")
-ghg_ct_tbl
 ```
 
-The contingency table in Table 3 is illustrated in Figure 5.
+```{r ct, echo=FALSE, message=FALSE, warning=FALSE}
+ghg_ct %>%
+  kbl(caption = "Contingency table showing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015. \\label{ct}") %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 2))
+```
+
+
+The contingency table in Table \@ref(tab:ct) is illustrated in Figure 5.
 
 ![](figures/part4/fullfillment_bar_plot.png)
 Figure 5. Bar plot visualizing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
 
-A chi-square test for association indicated there was a significant association between income group and carbon budget fulfillment ((χ2)=76.97, df=3, p<.001, χ2-test for association). For further nuance of the results, the individual chi-square components were analyzed, see Table 4.
-
-Table 4. Individual chi-square components from the chi-square test.
+A chi-square test for association indicated there was a significant association between income group and carbon budget fulfillment ((χ2)=76.97, df=3, p<.001, χ2-test for association). For further nuance of the results, the individual chi-square components were analyzed, see Table \@ref(tab:comp).
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/part4_associations.R")
-chisq_comp_tbl
+```
+
+```{r comp, echo=FALSE, message=FALSE, warning=FALSE}
+chisq_comp %>%
+  kbl(caption = "Individual chi-square components from the chi-square test. \\label{comp}") %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 2))
 ```
 
 The largest individual chi-square value was for Low income and Under (29.14) which was contributing approximately 38% of the total chi-square value of 76.97, i.e. this association has had a large effect on the total result. The second largest individual chi-square value was for *High income and Under* (12.00), followed by *Upper middle
@@ -235,19 +246,26 @@ Figure 6. Contribution to the total chi-square result in percent for each associ
 Figure 6 illustrates the largest contribution of the association of low income-under (~38%) to the total chi-square result. It also shows the smaller contributions of *high income-under* (~16%), *upper middle income-under* (~14%), *lower middle income-under* (~11%), *low income-over* (~10%), *high income-over* (~4%), *upper middle income-over* (~4%), and *lower middle income-over* (~3%).
 
 Analyzing the residuals of the chi-square test gave an indication of which attributes
-contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table 5 below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.
-
-Table 5. Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis.
+contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table \@ref(tab:expdiff) below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/part4_associations.R")
-chisq_exp_diff_tbl
 ```
 
-There had been 19 observations on low income countries under the carbon budget per
-capita and year. As seen in Table 5, if only chance would have affected their choice the expected frequency would have been around 6, i.e the large individual chi square value of 29.14 should be interpreted as low income countries emitted under the carbon budget per capita and year much more than expected.
+```{r expdiff, echo=FALSE, message=FALSE, warning=FALSE}
+chisq_exp_diff %>%
+  kbl(caption = "Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis. \\label{expdiff}") %>%
+  kable_styling(full_width = FALSE) %>%
+  column_spec(1, bold = T) %>%
+  column_spec(4:5, background = "#f2f2f2") %>%
+  add_header_above(c(" " = 1, "Expected frequency" = 2, "Difference"=2)) %>%
+  add_header_above(c(" " = 1, "Budget comparison" = 4)) 
+```
+
+There had been 19 observations on low income countries under the carbon budget per capita and year. As seen in Table \@ref(tab:expdiff), if only chance would have affected their choice the expected frequency would have been around 6, i.e the large individual chi square value of 29.14 should be interpreted as low income countries emitted under the carbon budget per capita and year much more than expected.
 
 The same reasoning, but opposite, goes for high income countries under the carbon budget per capita and year. 0 observations were made compared to around 12 expected, i.e. the individual chi square value of 12.00 should be interpreted as high income countries emitted under the carbon budget per capita and year less than expected.
+
 Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.
 
 ## Discussion
