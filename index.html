@@ -1922,10 +1922,9 @@ Changed data type for ‘year’ from chr to dbl
 </tfoot>
 </table>
 <p>The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and
-the remaining years until 2050, see Equation 1.</p>
-<p><span class="math display">\[\begin{equation}
-\tag{Eq. 1}
-carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left}
+the remaining years until 2050, see Equation <a href="#eq:budget">(1)</a>.</p>
+<p><span class="math display" id="eq:budget">\[\begin{equation}
+carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left} \tag{1}
 \end{equation}\]</span></p>
 <p>The year 2050 was chosen as it is the year UNDP mentions in their emission goal to reach global net zero emission of CO2. Which is related to the thirteenth sustainable development goal: Climate action (UNDP, 2023). UN projects the population in 2050 will be 9.8 billion people (UN, 2023b).</p>
 <p>Lastly, additional filtering was done to custom the data to be able to answer each specific research question. This was done in R and will not be covered in this chapter. For the continued cleaning process it is recommended to read the appendix for the respective report part.</p>
@@ -1960,14 +1959,12 @@ carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_201
 <p>To check if the data matched the assumptions, basic diagnostic plots of residuals vs fitted and normal Q-Q were plotted.</p>
 <p>The Residuals vs Fitted plot showed the spread of the residuals around a horizontal line for each group. To comply with the assumption of homogeneous variance across groups the spread of residuals for the group with the largest variance had to be less than three times the spread of the group with the smallest. If not, the data in the ANOVA model was considered heteroscedastic which meant the variance of the residuals was unequal over the range of measured values, i.e. the first assumption was not met.</p>
 <p>For the data in the ANOVA model to comply with the second assumption of normal distribution, the Normal Q-Q plot would show the residuals following the straight dashed line in the graph. If the residuals deviated too much from the straight line the distribution of the data was considered non-normal.</p>
-<p>If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).</p>
-<p><span class="math display">\[\begin{equation}
-\tag{Eq. 2}
-data\_log\_transformed = \log_{10}\left(ghg\_emisson\right)
+<p>If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation <a href="#eq:log">(2)</a>) and the square root transformation (Equation <a href="#eq:root">(3)</a>).</p>
+<p><span class="math display" id="eq:log">\[\begin{equation}
+data\_log\_transformed = \log_{10}\left(ghg\_emisson\right) \tag{2}
 \end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-\tag{Eq. 3}
-data\_sqrt\_transformed = \sqrt{ghg\_emisson}
+<p><span class="math display" id="eq:root">\[\begin{equation}
+data\_sqrt\_transformed = \sqrt{ghg\_emisson} \tag{3}
 \end{equation}\]</span></p>
 <p>If the data did not meet the ANOVA assumptions using either of mentioned transformations, the Kruskal-Wallis rank sum test for non-parametric data was used instead. If the test showed that there was a difference between at least two of the groups, a post-hoc test (using the PMCMRplus package) would be performed to be able to decide between which groups the difference lay.</p>
 </div>

@@ -88,12 +88,11 @@ kbl(ghg_changes_df, align = "l",
 
 
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and 
-the remaining years until 2050, see Equation 1.
+the remaining years until 2050, see Equation \@ref(eq:budget).
 
-$$\begin{equation}
-\tag{Eq. 1}
-carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left}
-\end{equation}$$
+\begin{equation}
+carbon\_budget_{per\_capita\_and\_year\_until\_2050} = \frac{carbon\_budget\_2019}{pop\_avg \cdot years \_left} (\#eq:budget)
+\end{equation}
 
 The year 2050 was chosen as it is the year UNDP mentions in their emission goal to reach global net zero emission of CO2. Which is related to the thirteenth sustainable development goal: Climate action (UNDP, 2023). UN projects the population in 2050 will be 9.8 billion people (UN, 2023b).
 
@@ -131,17 +130,15 @@ The Residuals vs Fitted plot showed the spread of the residuals around a horizon
 
 For the data in the ANOVA model to comply with the second assumption of normal distribution, the Normal Q-Q plot would show the residuals following the straight dashed line	in the graph. If the residuals deviated too much from the straight line the distribution of the data was considered non-normal.
 
-If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation 2) and the square root transformation (Equation 3).
+If the data did not comply with one or both of the assumptions, the response variable (GHG emission) was transformed. Two transformations were tested, the logarithmic transformation (Equation \@ref(eq:log)) and the square root transformation (Equation \@ref(eq:root)).
 
-$$\begin{equation}
-\tag{Eq. 2}
-data\_log\_transformed = \log_{10}\left(ghg\_emisson\right)
-\end{equation}$$
+\begin{equation}
+data\_log\_transformed = \log_{10}\left(ghg\_emisson\right) (\#eq:log)
+\end{equation}
 
-$$\begin{equation}
-\tag{Eq. 3}
-data\_sqrt\_transformed = \sqrt{ghg\_emisson}
-\end{equation}$$
+\begin{equation}
+data\_sqrt\_transformed = \sqrt{ghg\_emisson} (\#eq:root)
+\end{equation}
 
 If the data did not meet the ANOVA assumptions using either of mentioned transformations, the Kruskal-Wallis rank sum test for non-parametric data was used instead. If the test showed that there was a difference between at least two of the groups, a post-hoc test (using the	PMCMRplus	package) would be performed to be able to decide between which groups the difference lay.
 
