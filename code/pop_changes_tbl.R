@@ -1,6 +1,4 @@
-devtools::install_github(repo="haozhu233/kableExtra", ref="a6af5c0")
 library(tidyverse)
-library(kableExtra)
 
 pop_changes_df <- data.frame(
   Software = c(rep("Excel", 8), rep("R", 3)),
@@ -16,10 +14,3 @@ pop_changes_df <- data.frame(
               "Merged population dataframe with the long format greenhouse gas emission dataframe", 
               "Column with greenhouse gas emission per capita in 2019 for each country",
               "Column with greenhouse gas emission per capita in 2019 for each country"))
-
-pop_changes_tbl <- kbl(ghg_changes_df, align = "l") %>%
-  kable_paper(full_width = F) %>%
-  column_spec(1, bold = T) %>%
-  collapse_rows(columns = 1:2, valign = "top") %>%
-  footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.") 
-

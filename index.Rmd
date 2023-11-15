@@ -8,8 +8,15 @@ output:
     toc: true
     toc_float: true
     toc_depth: 4
+header-includes:
+- \usepackage{float}
 ---
 
+```{r setup, include=FALSE}
+# devtools::install_github(repo="haozhu233/kableExtra", ref="a6af5c0")
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+```
 
 ## Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
@@ -47,25 +54,38 @@ The other dataset that was downloaded was the “Population, total”, which was
 ### Data preparation and cleaning
 The data was prepared in two different stages, first in Excel and then in R. For both imported workbooks, the main data sheet was transformed and then saved as a CSV file. These CSV files were then imported into R where the transformation and cleaning of the data continued.
 
-First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table 1 shows changes made to the sheet containing the main data.
-
-Table 1. Changes made to greenhouse gas emission data in both Excel and R.
+First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table \@ref(tab:ghg) shows changes made to the sheet containing the main data.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/ghg_changes_tbl.R")
-ghg_changes_tbl
+```
+
+```{r ghg, echo=FALSE, message=FALSE, warning=FALSE}
+kbl(ghg_changes_df, align = "l",
+    caption = "Changes made to greenhouse gas emission data in both Excel and R. \\label{ghg}") %>%
+  kable_paper(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  collapse_rows(columns = 1:2, valign = "top") %>%
+  footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.")
 ```
 
 Note that Venezuela (VEN) did not have a value for income group in the metadata sheet, “Venezuela, previously classified as an upper-middle income country, is now unclassified due to a lack of available data in the recent period” (World Bank, 2022).
 
-Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table 2 shows changes made to the sheet containing the main data.
-
-Table 2. Changes made to population data in both Excel and R.
+Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table \@ref(tab:pop) shows changes made to the sheet containing the main data.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 source("code/pop_changes_tbl.R")
-pop_changes_tbl
 ```
+
+```{r pop, echo=FALSE, message=FALSE, warning=FALSE}
+kbl(ghg_changes_df, align = "l",
+    caption = "Changes made to population data in both Excel and R. \\label{pop}") %>%
+  kable_paper(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  collapse_rows(columns = 1:2, valign = "top") %>%
+  footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.") 
+```
+
 
 The carbon budget per capita and year until 2050 was estimated using the remaining carbon budget of 500 GtCO2 which is in line with keeping global warming to 1.5°C (50% probability) according to IPCC A6 WG1 (IPCC, 2021). However, as the budget was for 2020, the total greenhouse gas emission from 2019 was added to this budget. The calculated carbon budget for 2019 was then divided with the average population and 
 the remaining years until 2050, see Equation 1.

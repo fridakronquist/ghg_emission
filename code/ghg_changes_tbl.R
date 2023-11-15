@@ -1,6 +1,4 @@
-devtools::install_github(repo="haozhu233/kableExtra", ref="a6af5c0")
 library(tidyverse)
-library(kableExtra)
 
 ghg_changes_df <- data.frame(
   Software = c(rep("Excel", 8), rep("R", 2)),
@@ -15,13 +13,5 @@ ghg_changes_df <- data.frame(
               "Renamed variables using the snake case naming convention (stylized as snake_case)", 
               "Transformed data from wide to long format", 
               "Changed data type for 'year' from chr to dbl"))
-
-ghg_changes_tbl <- kbl(ghg_changes_df, align = "l") %>%
-  kable_paper(full_width = F) %>%
-  column_spec(1, bold = T) %>%
-  collapse_rows(columns = 1:2, valign = "top") %>%
-  footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.") 
-
-  
 
 
