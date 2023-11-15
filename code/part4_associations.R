@@ -71,20 +71,21 @@ ggplot(data = ghg_n, aes(x=income_group, y=n,
                          fill=budget_comparison)) +
   geom_bar(stat = "identity", 
            position = position_dodge()) + 
-  labs(title = "Countries Fullfilling Carbon Budget/Capita", 
+  labs(title = "Countries Meeting Carbon Budget/Capita", 
        subtitle = "Based on income group",
        y = "Frequency", x = "Income Group") + 
   theme_bw() + 
   theme(plot.title = element_text(face="bold", size=14),
         plot.subtitle = element_text(size=14),
-        axis.title.x = element_text(size=16),
+        axis.title.x = element_text(size=14),
         axis.title.y = element_text(size=0),
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12),
         legend.title = element_blank(),
         legend.text = element_text(size=12),
         legend.position="top",
-        strip.text.x = element_text(size = 14)) +
+        strip.text.x = element_text(size = 14),
+        plot.margin = margin(0.5,2,1,1, "cm")) +
   scale_fill_manual(breaks = c("Over", "Under"),
                     values = c("#9C2B35", "#2C9C46"),
                     labels = c("Over carbon budget", "Under carbon budget")) +
