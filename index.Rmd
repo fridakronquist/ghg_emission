@@ -5,9 +5,9 @@ email_address: fridakronquist@gmail.com
 github_repo: https://fridakronquist.github.io/ghg_emission/
 output: 
   bookdown::html_document2:
-     toc: true
-     toc_float: true
-     toc_depth: 4
+    toc: true
+    toc_float: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +15,7 @@ output:
 library(kableExtra)
 ```
 
-## Introduction
+# Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
 
 The main cause of climate change is a phenomenon known as the greenhouse effect. Human activity is resulting in the increased emission of so-called greenhouse gases (GHGs), such as water vapor, carbon dioxide, methane, nitrous oxide, and fluorinated gases. These gases get trapped in the atmosphere and let the light from the sun in but keep some of the heat from escaping, like the glass walls of a greenhouse. The more GHGs in the atmosphere, the more heat gets trapped, strengthening the greenhouse effect, and increasing the earth’s temperature (UN,	2022).
@@ -32,7 +32,7 @@ The report aims to investigate the following research questions:
 To make it easier for the reader to follow, the research questions have been divided into four parts, *Part 1: Global greenhouse gas emission trend 1990-2019*, *Part 2: Difference in greenhouse gas emission low vs high-income countries*, *Part 3: Difference in greenhouse gas emission between four income groups*, and *Part 4: Associations between income group and carbon budget fulfillment*. Part 1 aims at answering the first research question (*Q1*), Part 2 at answering the second research question (*Q2*), Part 3 at answering the third research question (*Q3*), and Part 4 to answering the fourth research question (*Q4*).
 
 
-## Method
+# Method
 This section will provide a brief explanation of methods and a description of the workflow. All statistical analyses have been performed in R. The following packages were used (what they were used for in parenthesis):
 
 - tidyverse	(data	sorting,	plots,	etc.)
@@ -41,14 +41,14 @@ This section will provide a brief explanation of methods and a description of th
 - kableExtra (tables)
 - cowplot (plot grid)
 
-### Data collection
+## Data collection
 Two public datasets have been used in this report, both have been downloaded from the World Bank’s database. 
 
 The main dataset that was downloaded was the “Total greenhouse gas emissions (kt of CO2 equivalent)”, which was last updated on 2022-09-16 (World Bank, 2023a). This data have been used to answer all four research questions. The data was downloaded as an excel file containing three sheets. The main sheet contains the	 columns “Country Name”, “Country Code”, “Indicator Name”, “Indicator Code”, and the greenhouse gas emissions for each country and economy from 1960 to 2019 sorted into columns based on year, i.e. a wide format. The two other sheets contain metadata regarding countries, e.g. region and income group, and indicators.
 
 The other dataset that was downloaded was the “Population, total”, which was last updated on 2022-12-22 (World bank, 2023b). This data was used in combination with the above mentioned dataset to answer research question 4. This data was also downloaded as an excel file and also contained three sheets. The main data sheet contains the columns “Country Name”, “Country Code”, “Indicator Name”, “Indicator Code”, as well as population data for all countries and economies between the years 1960 to 2021. The two other sheets contain metadata regarding countries and indicators.
 
-### Data preparation and cleaning
+## Data preparation and cleaning
 The data was prepared in two different stages, first in Excel and then in R. For both imported workbooks, the main data sheet was transformed and then saved as a CSV file. These CSV files were then imported into R where the transformation and cleaning of the data continued.
 
 First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table \@ref(tab:ghg) shows changes made to the sheet containing the main data.
@@ -94,10 +94,10 @@ The year 2050 was chosen as it is the year UNDP mentions in their emission goal 
 
 Lastly, additional filtering was done to custom the data to be able to answer each specific research question. This was done in R and will not be covered in this chapter. For the continued cleaning process it is recommended to read the appendix for the respective report part.
 
-### Statistical methods and tests
+## Statistical methods and tests
 This sub-section will explain the workflow related to the statistical tests used in this report.
 
-#### Linear regression
+### Linear regression
 The first research question the report aims to answer was Q1. Has the total greenhouse gas emissions globally increased from 1990 to 2019? As time cannot be affected by greenhouse gas emissions but greenhouse gas emissions can be affected by time, a linear regression model was used to find the answer to this question. Time was chosen as the explanatory variable and total greenhouse gas emission as the response variable, i.e. greenhouse gas emission (ghg_emission) was set as a function of time (year), $ghg\_emission = b_{0} + b_{1} \cdot year$.
 
 To see if the model was well adapted to the dataset, a scatterplot as well as diagnostic tools were made to examine if the relationship looked linear. When analyzing the basic diagnostic plots the following were considered:
@@ -109,10 +109,10 @@ To see if the model was well adapted to the dataset, a scatterplot as well as di
 
 If the model did not seem to be a good fit, the response variable was transformed using first a logarithmic transformation and thereafter a square root transformation. To be able to decide what model was the best fit for the data the results from the diagnostic tools as well as the R2 values from the models were compared.
 
-#### T-test
+### T-test
 The	 first step in answering the second research question *Q2. Was there a difference in greenhouse gas emissions between low-income and high-income countries in 2019?* was to check if the data were normally distributed. This was done by plotting histograms for both groups (high-income and low-income countries). If the data was normally distributed, a t-test would be performed. If it was not, Wilcoxon’s rank-sum test would be used. The latter analyzes the median differences, therefore it can be used on non-normally distributed (skewed)	data.
 
-#### One-way ANOVA
+### One-way ANOVA
 To answer the third research question, *Q3*, if there was a difference in greenhouse gas emissions between the four income groups low, lower middle, upper middle, and high income in 2019 it was first investigated whether a One-Way Analysis of Variance (one-way ANOVA) could be used.
 
 To be able to perform an ANOVA test two assumptions regarding the data had to be met.
@@ -138,7 +138,7 @@ data\_sqrt\_transformed = \sqrt{ghg\_emisson} (\#eq:root)
 
 If the data did not meet the ANOVA assumptions using either of mentioned transformations, the Kruskal-Wallis rank sum test for non-parametric data was used instead. If the test showed that there was a difference between at least two of the groups, a post-hoc test (using the	PMCMRplus	package) would be performed to be able to decide between which groups the difference lay.
 
-#### Chi-square test
+### Chi-square test
 A	 chi-square ($\chi^2$) test can be applied to statistical information of the type frequencies (integers) that are classified into different categories, usually a contingency table. The analysis investigates if the observed counts differ significantly from the expected counts. A chi-square test can be applied to different types of research questions. In this study, a	chi square test for association was used to answer research question 4, *Q4. Are there any significant associations between a country’s fulfillment of the 2019 carbon budget per person and year and their assigned income group?*
 
 The chi-square test is a nonparametric test. However, all the expected frequencies should be equal to or larger than 5. If that is not the case it is recommended to perform a Fisher’s exact test instead. Hence, the values of the expected counts were inspected before moving forward with the analysis.
@@ -146,10 +146,10 @@ The chi-square test is a nonparametric test. However, all the expected frequenci
 To investigate what attribute contributed most to the results of the chi-square test the individual chi-square components i.e. the residuals of the test were analyzed. Analyzing the residuals of the chi-square test gives an indication of which attributes contributed most to the chi-square result but not in what direction. Therefore, the direction of the deviation was found by analyzing the deviation of the observed frequency compared to the expected frequency for each attribute.
 
 
-## Result
+# Result
 This section will present the results of the analysis.
 
-### Part 1: Global green house gas emission trend 1990-2019
+## Part 1: Global green house gas emission trend 1990-2019
 Simple linear regression was used to test if the total GHG emissions increased from 1990 to 2019, i.e. to test if the year significantly predicted the total greenhouse gas emissions. The fitted regression model was: $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. A visualization of the regression model can be seen in Figure \@ref(fig:1reg).
 
 ```{r 1reg, fig.cap = "Scatterplot showing the linear regression model, log10(GHG_emission) = 0.0079(year) − 8.3.", echo=FALSE, message=FALSE, warning=FALSE}
@@ -160,7 +160,7 @@ knitr::include_graphics("figures/part1/regression_plot.png")
 The overall regression was statistically significant (R2 = .97, F(28, 1) = 1122, p < .001). It was found that the year significantly predicted the total emission of GHGs ($\beta$ = 0.0079, p = < .001). I.e. total greenhouse gas emissions significantly increased from 1990 to 2019.
 
 
-### Part 2: Difference in green house gas emission low vs high income countries
+## Part 2: Difference in green house gas emission low vs high income countries
 As seen in Figure \@ref(fig:2dist), the data was found to be skewed to the right. Hence, a Wilcoxon rank-sum test was used to analyze if there was a difference in greenhouse gas emissions between high-income and low-income countries in 2019.
 
 ```{r 2dist, fig.cap = "Histograms showing the right-skewed distribution of GHG emission for high-income and low-income countries.", echo=FALSE, message=FALSE, warning=FALSE}
@@ -181,7 +181,7 @@ knitr::include_graphics("figures/part2/box_plots.png")
 Another observation worth mentioning is that the high-income sample contained 57 countries, and the low-income sample contained 28 countries. That the low-income sample was around half the sample size of high-income countries may have affected the results of this analysis.
 
 
-### Part 3: Difference in greenhouse gas emission between four income groups
+## Part 3: Difference in greenhouse gas emission between four income groups
 Statistically significant differences in greenhouse gas emissions during 2019 were not observed between countries in the four income groups, high income (Mdn=60590), upper middle income (Mdn=21915), lower middle income (Mdn=30530), and low income (Mdn=29110) as visualized in Figure \@ref(fig:3box) below.
 
 ```{r 3box, fig.cap = "GHG emission per income group for the four income groups high, upper middle, lower middle, and low income. The median GHG emission of high income countries was 60590ktCO2, upper middle income countries was 21915ktCO2, lower middle income countries was 30530ktCO2, and low income countries was 29110ktCO2.", echo=FALSE, message=FALSE, warning=FALSE}
@@ -191,7 +191,7 @@ knitr::include_graphics("figures/part3/box_plots.png")
 A Kruskal-Wallis rank sum test returned a p-value of 0.18 ($\chi^2$(3)=4.891). Since the p-value was larger than the critical value ($\alpha$=0.05), the null hypothesis of equal population means was not rejected and it was concluded that there is not a (statistically) significant difference among the population means, i.e. there was not a difference in GHG emission between at the income groups.
 
 
-### Part 4: Associations between income group and carbon budget fullfillment
+## Part 4: Associations between income group and carbon budget fullfillment
 The remaining carbon budget in line with keeping global warming to 1.5°C was 500 GtCO2 (50% probability) for 2020 and forward (IPCC, 2021). During 2019, approximately 46 GtCO2 equivalents of total greenhouse gases were released globally. Adding that to the carbon budget for 2020 gives a carbon budget of around 546 Gt for 2019. UN projects the world population to reach 9.8 billion in 2050 (UN, 2017). The world population year 2019 was estimated to be approximately 7.7 billion people. Given an average population of ~ 8.7 billion people between 2019 and 2050, that results in a carbon budget per person for 2019 of 0.002kt or 2t CO2/person/year until 2050.
 The fulfillment of the 2019 carbon budget per capita and year until 2050 based on income group was noted in the contingency table below (Table \@ref(tab:ct)).
 
@@ -262,20 +262,20 @@ The same reasoning, but opposite, goes for high income countries under the carbo
 
 Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.
 
-## Discussion
+# Discussion
 This section will discuss the methodology, the findings, and draw conclusions.
 
-### Choice of Data
+## Choice of Data
 This report focuses on total GHG emissions per country. If instead GHG emission per capita for each country would have been chosen the results may have had another outcome. Also, the chosen data does not consider within-country inequalities in income. It is possible that there are huge emitters in low-income countries and low emitters in high-income countries.
 
 Additionally, it is not known how the total GHG emission is calculated, and which country the emission is recorded in when it comes to offshore consumption (export), same goes for tourism and other activities performed by individuals living in another country from where the emission is being produced.
 
-### Result
+## Result
 The Wilcoxon rank-sum test in part 2 of this report and the Kruskal-Wallis rank sum test in part 3 gave different results. Considering the same data for low-income and high-income countries was used, either the Wilcoxon rank-sum test should have indicated that there was no significant difference between the income groups. Or, the Kruskal-Wallis rank sum test should have shown that there was a significant difference between at least two groups, and post-hoc would have shown that there was a difference between high-income and low-income countries in terms of GHG emissions. However, observing the boxplots of the two parts, Figure \@ref(fig:2box) (boxplot for part 2) shows it is likely to be a difference as the median line of the high-income box lies outside of the low-income box entirely. The same goes for the boxes in Figure \@ref(fig:3box) (boxplot for part 3).
 
 Hence, the opposing test results might be due to how the different tests work. Although they are both non-parametric tests, maybe the Wilcoxon rank-sum test is less sensitive than the Kruskal-Wallis rank sum test. It is also possible that the difference between the tests might be because the data was transformed in part 3, but not in part 2. Regardless, this is a topic for further research.
 
-### Conclusion
+## Conclusion
 *Q1. Has the total greenhouse gas emissions globally per year increased from 1990 to 2019?*
 
 Yes. Based on the sample, the total GHG emissions globally per year increased from 1990 to 2019. It was found that the year significantly predicted the total emission of GHGs ($\beta$ = 0.0079, p = < .001), using the regression model $log_{10}(GHG \; emission) = 0.0079(year) − 8.3$. The regression was statistically significant (R2 = .97, F(28, 1) = 1122, p < .001).
@@ -292,7 +292,7 @@ No. Significant differences in greenhouse gas emissions during 2019 were not obs
 
 Yes. There was a significant association between income group and carbon budget fulfillment (($\chi^2$)=76.97, df=3, p<.001, $\chi^2$-test for association). Low income countries emitted under the carbon budget per capita and year until 2050 much more than expected (obs. 19, exp. ~6). High income countries emitted under the carbon budget less than expected (obs. 0, exp. 12). Upper middle income countries emitted under the carbon budget less than expected (obs. 3, exp. ~11) whereas lower middle income countries emitted under the carbon budget more than expected (obs. 21, exp. ~11). Low income countries emitted over the carbon budget less than expected (obs. 9, exp. ~22), so did lower middle income countries (obs. 32, exp. ~42). High income countries (obs. 57, exp. ~45) and upper middle income countries (obs. 52, exp. ~41) both emitted over the carbon budget more than expected.
 
-## References
+# References
 IPCC, 2021: Chapter 5. In: Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Canadell, J.G., P.M.S. Monteiro, M.H. Costa, L. Cotrim da Cunha, P.M. Cox, A.V. Eliseev, S. Henson, M. Ishii, S. Jaccard, C. Koven, A. Lohila, P.K. Patra, S. Piao, J. Rogelj, S. Syampungani, S. Zaehle, and K. Zickfeld, 2021: Global Carbon and other Biogeochemical Cycles and Feedbacks. In Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Masson-Delmotte, V., P. Zhai, A. Pirani, S.L. Connors, C. Péan, S. Berger, N. Caud, Y. Chen, L. Goldfarb, M.I. Gomis, M. Huang, K. Leitzell, E. Lonnoy, J.B.R. Matthews, T.K. Maycock, T. Waterfield, O. Yelekçi, R. Yu, and B. Zhou (eds.)]. Cambridge University Press, Cambridge, United Kingdom and New York, NY, USA, pp. 673–816, doi: 10.1017/9781009157896.007 .]
 
 UN. (2022, January 8). 5 things you should know about the greenhouse gases warming the planet.
@@ -318,9 +318,9 @@ https://data.worldbank.org/indicator/SP.POP.TOTL?end=2019&start=2019&view=chart
 World Bank. (2023c, January 9). Countries and Economies.
 https://data.worldbank.org/country
 
-## Appendix
+# Appendix
 
-### Data Preparation
+## Data Preparation
 This appendix contains a list of all economies, regions, etc., that was removed during the data preparation. 
 
 The following economies were removed:
