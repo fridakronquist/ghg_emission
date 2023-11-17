@@ -15,6 +15,14 @@ output:
 library(kableExtra)
 ```
 
+<style>
+p.caption {
+  font-size: 0.9em;
+}
+</style>
+
+
+
 # Introduction
 Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).
 
@@ -60,7 +68,7 @@ source("code/ghg_changes_tbl.R")
 ```{r ghg, echo=FALSE, message=FALSE, warning=FALSE}
 kbl(ghg_changes_df, align = "l",
     caption = "Changes made to greenhouse gas emission data in both Excel and R. \\label{ghg}") %>%
-  kable_paper(full_width = F) %>%
+  kable_paper(full_width = T) %>%
   column_spec(1, bold = T) %>%
   collapse_rows(columns = 1:2, valign = "top") %>%
   footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.")
@@ -77,7 +85,7 @@ source("code/pop_changes_tbl.R")
 ```{r pop, echo=FALSE, message=FALSE, warning=FALSE}
 kbl(ghg_changes_df, align = "l",
     caption = "Changes made to population data in both Excel and R. \\label{pop}") %>%
-  kable_paper(full_width = F) %>%
+  kable_paper(full_width = T) %>%
   column_spec(1, bold = T) %>%
   collapse_rows(columns = 1:2, valign = "top") %>%
   footnote(symbol = "Compared to the World Bank’s list of countries (World bank, 2023c). For full list see appendix A1.") 
@@ -202,7 +210,7 @@ source("code/part4_associations.R")
 ```{r ct, echo=FALSE, message=FALSE, warning=FALSE}
 ghg_ct %>%
   kbl(caption = "Contingency table showing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015. \\label{ct}") %>%
-  kable_styling(full_width = FALSE) %>%
+  kable_styling(full_width = T) %>%
   column_spec(1, bold = T) %>%
   add_header_above(c(" " = 1, "Budget comparison" = 2))
 ```
@@ -223,7 +231,7 @@ source("code/part4_associations.R")
 ```{r comp, echo=FALSE, message=FALSE, warning=FALSE}
 chisq_comp %>%
   kbl(caption = "Individual chi-square components from the chi-square test. \\label{comp}") %>%
-  kable_styling(full_width = FALSE) %>%
+  kable_styling(full_width = T) %>%
   column_spec(1, bold = T) %>%
   add_header_above(c(" " = 1, "Budget comparison" = 2))
 ```
@@ -249,7 +257,7 @@ source("code/part4_associations.R")
 ```{r expdiff, echo=FALSE, message=FALSE, warning=FALSE}
 chisq_exp_diff %>%
   kbl(caption = "Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis. \\label{expdiff}") %>%
-  kable_styling(full_width = FALSE) %>%
+  kable_styling(full_width = T) %>%
   column_spec(1, bold = T) %>%
   column_spec(4:5, background = "#f2f2f2") %>%
   add_header_above(c(" " = 1, "Expected frequency" = 2, "Difference"=2)) %>%

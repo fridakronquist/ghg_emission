@@ -1695,6 +1695,11 @@ border-radius: 0px;
 </div>
 
 
+<style>
+p.caption {
+font-size: 0.9em;
+}
+</style>
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p>Human activities are driving up the earth’s temperature. This rise in temperature has long-term, negative effects on the climate. Increased frequency and intensity of extreme weather events such as flooding, droughts, wildfires, and hurricanes are some of these effects that influence millions of people and generate trillions in economic losses (UN, 2022).</p>
@@ -1729,7 +1734,7 @@ border-radius: 0px;
 <h2><span class="header-section-number">2.2</span> Data preparation and cleaning</h2>
 <p>The data was prepared in two different stages, first in Excel and then in R. For both imported workbooks, the main data sheet was transformed and then saved as a CSV file. These CSV files were then imported into R where the transformation and cleaning of the data continued.</p>
 <p>First, the Excel workbook containing data for the total greenhouse gas emissions was prepared and cleaned. Table <a href="#tab:ghg">2.1</a> shows changes made to the sheet containing the main data.</p>
-<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:ghg">Table 2.1: </span>Changes made to greenhouse gas emission data in both Excel and R.
 </caption>
@@ -1826,7 +1831,7 @@ Changed data type for ‘year’ from chr to dbl
 </table>
 <p>Note that Venezuela (VEN) did not have a value for income group in the metadata sheet, “Venezuela, previously classified as an upper-middle income country, is now unclassified due to a lack of available data in the recent period” (World Bank, 2022).</p>
 <p>Secondly, the Excel workbook containing data for the populations was prepared and cleaned. Table <a href="#tab:pop">2.2</a> shows changes made to the sheet containing the main data.</p>
-<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <caption>
 <span id="tab:pop">Table 2.2: </span>Changes made to population data in both Excel and R.
 </caption>
@@ -2026,7 +2031,7 @@ Figure 3.4: GHG emission per income group for the four income groups high, upper
 <h2><span class="header-section-number">3.4</span> Part 4: Associations between income group and carbon budget fullfillment</h2>
 <p>The remaining carbon budget in line with keeping global warming to 1.5°C was 500 GtCO2 (50% probability) for 2020 and forward (IPCC, 2021). During 2019, approximately 46 GtCO2 equivalents of total greenhouse gases were released globally. Adding that to the carbon budget for 2020 gives a carbon budget of around 546 Gt for 2019. UN projects the world population to reach 9.8 billion in 2050 (UN, 2017). The world population year 2019 was estimated to be approximately 7.7 billion people. Given an average population of ~ 8.7 billion people between 2019 and 2050, that results in a carbon budget per person for 2019 of 0.002kt or 2t CO2/person/year until 2050.
 The fulfillment of the 2019 carbon budget per capita and year until 2050 based on income group was noted in the contingency table below (Table <a href="#tab:ct">3.1</a>).</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:ct">Table 3.1: </span>Contingency table showing how many countries in each income group emitted over vs under the 2019 carbon budget per person and year until 2015.
 </caption>
@@ -2106,7 +2111,7 @@ Figure 3.5: Bar plot visualizing how many countries in each income group emitted
 </p>
 </div>
 <p>A chi-square test for association indicated there was a significant association between income group and carbon budget fulfillment ((χ2)=76.97, df=3, p&lt;.001, χ2-test for association). For further nuance of the results, the individual chi-square components were analyzed, see Table <a href="#tab:comp">3.2</a>.</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:comp">Table 3.2: </span>Individual chi-square components from the chi-square test.
 </caption>
@@ -2190,7 +2195,7 @@ Figure 3.6: Contribution to the total chi-square result in percent for each asso
 </div>
 <p>Figure <a href="#fig:4corr">3.6</a> illustrates the largest contribution of the association of low income-under (~38%) to the total chi-square result. It also shows the smaller contributions of <em>high income-under</em> (~16%), <em>upper middle income-under</em> (~14%), <em>lower middle income-under</em> (~11%), <em>low income-over</em> (~10%), <em>high income-over</em> (~4%), <em>upper middle income-over</em> (~4%), and <em>lower middle income-over</em> (~3%).</p>
 <p>Analyzing the residuals of the chi-square test gave an indication of which attributes contributed most to the chi-square result, i.e. which observed frequency of attributes deviated most from the expected frequency of the respective attribute. The direction of the deviation can be observed in Table <a href="#tab:expdiff">3.3</a> below. A minus sign indicates that the observed frequency was less than the expected frequency for that association.</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:expdiff">Table 3.3: </span>Expected frequency of countries fulfilling the 2019 carbon budget per capita and year until 2050. The deviation of the observed frequency compared to the expected frequency in parenthesis.
 </caption>
