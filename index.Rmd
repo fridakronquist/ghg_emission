@@ -17,7 +17,7 @@ library(kableExtra)
 
 <style>
 p.caption {
-  font-size: 0.9em;
+  color: #757171;
 }
 </style>
 
